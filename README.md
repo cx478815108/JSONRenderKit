@@ -10,7 +10,7 @@ What important is that you can learn how to use JavaScript to communicate with O
 JSON demo：JSONRenderKit/render.json
 
 ### Screenshots
-![](https://github.com/cx478815108/JSONRenderKit/blob/master/screenshots/demo.png?raw=true)
+![](https://github.com/cx478815108/JSONRenderKit/blob/master/screenshots/screenshot.png?raw=true)
 
 -------
 
