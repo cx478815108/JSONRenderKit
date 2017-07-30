@@ -1,4 +1,4 @@
-## 说明
+## JSONRenderKit说明
 这是一个好玩的库，目前我已经放进正式项目里面啦，你可以在app store搜索“掌上理工大”。
 你也可以修改源代码并扩展新组件后放进的你自己的项目，这样就可以用JSON来布局一些简单的页面。
 重要的是你也可以参考JavaScript是怎样和OC进行交互的,代码里面有详细的注释。要是有兴趣，你可以自己将他打造成为一个有用的工具。
@@ -10,9 +10,7 @@ What important is that you can learn how to use JavaScript to communicate with O
 JSON demo：JSONRenderKit/render.json
 
 ### Screenshots
-![-w240](https://github.com/cx478815108/JSONRenderKit/blob/master/screenshots/demo.png?raw=true)
-
-![-w440](https://github.com/cx478815108/JSONRenderKit/blob/master/screenshots/service.png?raw=true)
+![](https://github.com/cx478815108/JSONRenderKit/blob/master/screenshots/demo.png?raw=true)
 
 -------
 
