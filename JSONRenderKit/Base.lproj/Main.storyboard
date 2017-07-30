@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3mI-Oa-tU4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="7go-bJ-ruQ">
+            <objects>
+                <navigationController id="3mI-Oa-tU4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8QJ-bk-uHw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="P6V-tK-bwE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OoQ-cb-qHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1121" y="199"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-Gh-5wD">
+                                <rect key="frame" x="168.5" y="94" width="38" height="30"/>
+                                <state key="normal" title="按钮1"/>
+                                <connections>
+                                    <action selector="didPressedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y9V-ad-ub0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kR3-70-yRz">
+                                <rect key="frame" x="167" y="141" width="40" height="30"/>
+                                <state key="normal" title="按钮2"/>
+                                <connections>
+                                    <action selector="didPressedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ORO-Th-BKQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIN-7W-JUQ">
+                                <rect key="frame" x="167" y="191" width="40" height="30"/>
+                                <state key="normal" title="按钮3"/>
+                                <connections>
+                                    <action selector="didPressedBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BAe-XZ-iaS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EIN-7W-JUQ" firstAttribute="centerX" secondItem="kR3-70-yRz" secondAttribute="centerX" id="0gb-pM-HxD"/>
+                            <constraint firstItem="zLM-Gh-5wD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Ly-Uj-bxx"/>
+                            <constraint firstItem="kR3-70-yRz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9tu-ok-ept"/>
+                            <constraint firstItem="EIN-7W-JUQ" firstAttribute="top" secondItem="kR3-70-yRz" secondAttribute="bottom" constant="20" id="btV-uq-yet"/>
+                            <constraint firstItem="kR3-70-yRz" firstAttribute="top" secondItem="zLM-Gh-5wD" secondAttribute="bottom" constant="17" id="g7n-7w-Xov"/>
+                            <constraint firstItem="zLM-Gh-5wD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="ljo-iP-fz4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VhO-XI-xOb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-378" y="200"/>
+        </scene>
+    </scenes>
+</document>
