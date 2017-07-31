@@ -6,7 +6,7 @@ JSON示例：JSONRenderKit/render.json
 截图如下
 
 This is a funny library and I have use it in my app you can search “掌上理工大” on app store! With this library ,you can generate simple native UI,if you are interested in it you can make it a powerful library!
-What important is that you can learn how to use JavaScript to communicate with Objective-C!I have added the code annotations to it!
+What important is that you can learn how to use JavaScript to communicate with Objective-C! I have added the code annotations to it!
 JSON demo：JSONRenderKit/render.json
 
 ### Screenshots
