@@ -203,13 +203,16 @@ class ListView extends View {
         this.ocClsName = 'SSListView';
         this.dataArray = [];
         this.clickItem = null;
+        this.itemStyle = null;
     }
 
     initWithJSON(json){
         super.initWithJSON(json);
         this.clickItem = json.clickItem;
+        this.itemStyle = json.itemStyle;
         if(json.dataArray){this.setDataArray();}
         this.invokeNative('js_setTemplateComponents:',json.item);
+        this.invokeNative('setItemStyle:',this.itemStyle);
     }
 
     setDataArray(array){

@@ -10,6 +10,7 @@
 		7B2DF7921AD3C39ED897A659 /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D46B3D4B938FA2BC99E5D74 /* libPods-JSONRenderKit.a */; };
 		9B3D83601F2DAE8100EE5020 /* Service.py in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D835F1F2DAE8100EE5020 /* Service.py */; };
 		9BB2A7491F20E639007A9432 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2A7481F20E639007A9432 /* SSTool.js */; };
+		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
 		9BF92A751F09CCCA00E838CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A741F09CCCA00E838CD /* main.m */; };
 		9BF92A781F09CCCA00E838CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A771F09CCCA00E838CD /* AppDelegate.m */; };
 		9BF92A7B1F09CCCA00E838CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A7A1F09CCCA00E838CD /* ViewController.m */; };
@@ -33,6 +34,8 @@
 		4D46B3D4B938FA2BC99E5D74 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3D835F1F2DAE8100EE5020 /* Service.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Service.py; sourceTree = "<group>"; };
 		9BB2A7481F20E639007A9432 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
+		9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSeparator.h"; sourceTree = "<group>"; };
+		9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSeparator.m"; sourceTree = "<group>"; };
 		9BF92A701F09CCCA00E838CD /* JSONRenderKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONRenderKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF92A741F09CCCA00E838CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BF92A761F09CCCA00E838CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 		9BF92AA41F09D16500E838CD /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */,
+				9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */,
 				9BF92AA51F09D16500E838CD /* NSObject+SSRender.h */,
 				9BF92AA61F09D16500E838CD /* NSObject+SSRender.m */,
 				9BF92ABF1F09D4D600E838CD /* UIView+SSRender.h */,
@@ -337,6 +342,7 @@
 				9BF92AC41F09D89300E838CD /* SSBaseRenderController.m in Sources */,
 				9BF92AB71F09D16500E838CD /* SSJSContext.m in Sources */,
 				9BF92A7B1F09CCCA00E838CD /* ViewController.m in Sources */,
+				9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */,
 				9BF92A781F09CCCA00E838CD /* AppDelegate.m in Sources */,
 				9BF92AD31F09EEE500E838CD /* SSListView.m in Sources */,
 				9BF92AD41F09EEE500E838CD /* SSListViewCell.m in Sources */,

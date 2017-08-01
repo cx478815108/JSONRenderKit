@@ -10,6 +10,7 @@
 #import "UIColor+SSRender.h"
 #import "UIView+SSRender.h"
 #import "SSBaseRenderController.h"
+#import "UIView+SSeparator.h"
 
 #import <objc/runtime.h>
 #import <UIButton+WebCache.h>
@@ -99,6 +100,51 @@
     
     if(style[@"hidden"]){
         self.hidden=[style[@"hidden"] boolValue];
+    }
+    NSString *direction = style[@"separatorDirection"];
+    if (direction) {
+        UISeparatorDirection sd = UISeparatorDirectionNone;
+        if ([direction isEqualToString:@"none"]) {
+            [self ss_setSeparator:^(UIViewSeparator *ss_separator) {
+                ss_separator.separatorDirection = sd;
+            }];
+        }
+        else if ([direction isEqualToString:@"all"]){
+            [self ss_setSeparator:^(UIViewSeparator *ss_separator) {
+                ss_separator.separatorDirection = UISeparatorDirectionAll;
+            }];
+        }
+        else{
+            if ([direction containsString:@"left"]) {
+                sd = sd | UISeparatorDirectionLeft;
+            }
+            if ([direction containsString:@"right"]) {
+                sd = sd | UISeparatorDirectionRight;
+            }
+            if ([direction containsString:@"top"]) {
+                sd = sd | UISeparatorDirectionTop;
+            }
+            if ([direction containsString:@"bottom"]) {
+                sd = sd | UISeparatorDirectionBottom;
+            }
+        }
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) {
+            ss_separator.separatorDirection=sd;
+        }];
+    }
+    
+    NSString *separatorColor = style[@"separatorColor"];
+    if (separatorColor) {
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) {
+            ss_separator.separatorColor=[UIColor ss_colorWithString:separatorColor];
+        }];
+    }
+    
+    NSString *separatorHeight = style[@"separatorHeight"];
+    if (separatorHeight) {
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) {
+            ss_separator.separatorHeight=[style[separatorHeight] floatValue];
+        }];
     }
 }
 
@@ -345,8 +391,12 @@
 -(void)js_setStyle:(NSDictionary *)style
 {
     [super js_setStyle:style];
+    self.text=style[@"text"];
     if (style[@"textColor"]) {
         self.textColor=[UIColor ss_colorWithString:style[@"textColor"]];
+    }
+    if (style[@"showVBar"]) {
+        self.showsVerticalScrollIndicator=[style[@"showVBar"] boolValue];
     }
     NSString *align=style[@"align"];
     if (align) {
@@ -361,7 +411,9 @@
     if (style[@"fontSize"]) {
         self.font=[UIFont systemFontOfSize:[style[@"fontSize"] floatValue]];
     }
-
+    if (style[@"allowEdit"]) {
+        self.editable=[style[@"allowEdit"] boolValue];
+    }
 }
 
 @end
