@@ -13,7 +13,8 @@
 #import "UIColor+SSRender.h"
 
 @interface SSListViewCell()
-@property(nonatomic ,assign) BOOL configed;
+@property(nonatomic ,assign) BOOL subViewConfiged;
+@property(nonatomic ,assign) BOOL itemStyleConfiged;
 @end
 
 @implementation SSListViewCell
@@ -25,8 +26,8 @@
 
 -(void)configWithSubviewDicArray:(NSArray *)array
 {
-    if (self.configed) return;
-    self.configed=YES;
+    if (self.subViewConfiged) return;
+    self.subViewConfiged=YES;
     if (self.ss_viewStore==nil) {self.ss_viewStore=@{}.mutableCopy;}
     [array enumerateObjectsUsingBlock:^(NSDictionary  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view=[UIView ss_viewWithComponentDic:obj];
@@ -35,11 +36,16 @@
     }];
 }
 
+-(void)configItemStyle:(NSDictionary *)style
+{
+    if (self.itemStyleConfiged) return;
+    self.itemStyleConfiged=YES;
+    [self js_setStyle:style];
+}
+
 -(void)js_setStyle:(NSDictionary *)style
 {
-    if(style[@"itemBackgroundColor"]){
-        {self.backgroundColor=[UIColor ss_colorWithString:style[@"itemBackgroundColor"]];}
-    }
+    [super js_setStyle:style];
     NSArray *subStyles= style[@"subStyles"];
     if (subStyles && subStyles.count) {
         [self js_setSubStyles:subStyles];

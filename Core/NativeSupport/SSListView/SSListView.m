@@ -111,8 +111,7 @@
     listViewCell.tag=indexPath.item;
     //只会配置一次
     [listViewCell configWithSubviewDicArray:self.templateComponents];
-    NSString *colorString = self.style[@"itemBackgroundColor"];
-    if (colorString) {listViewCell.contentView.backgroundColor=[UIColor ss_colorWithString:colorString];}
+    [listViewCell configItemStyle:self.itemStyle];
     //设置style
     NSDictionary *style = self.dataArray[indexPath.item];
     if (style && [style isKindOfClass:[NSDictionary class]]) {

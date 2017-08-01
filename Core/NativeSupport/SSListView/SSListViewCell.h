@@ -11,4 +11,5 @@
 @interface SSListViewCell : UICollectionViewCell
 +(NSString *)reuseIdentify;
 -(void)configWithSubviewDicArray:(NSArray *)array;
+-(void)configItemStyle:(NSDictionary *)style;
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SSListView : UIView
-@property(nonatomic,strong) NSArray *templateComponents;
-@property(nonatomic,strong) NSArray *dataArray;
+@property(nonatomic ,strong) NSArray      *templateComponents;
+@property(nonatomic ,strong) NSArray      *dataArray;
+@property(nonatomic ,strong) NSDictionary *itemStyle;
 -(void)js_setDataArrays:(NSArray <NSDictionary *>*)array;
 -(void)js_addDataWithArray:(NSArray <NSDictionary *>*)array;
 -(void)js_setTemplateComponents:(NSArray *)templateComponents;
