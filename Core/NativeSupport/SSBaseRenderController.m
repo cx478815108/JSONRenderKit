@@ -115,7 +115,7 @@
     [_jsContext releaseObjcs];
     _jsContext = nil;
     [SSJSContext setCurrentContext:nil];
-    NSLog(@"SSBaseRenderController 死亡");
+    CXDebugLog(@"SSBaseRenderController dead");
 }
 
 @end

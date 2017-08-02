@@ -159,7 +159,7 @@ SSJSContext *_currentContext=nil;
 
 -(void)dealloc
 {
-    NSLog(@"jsContext死亡");
+    CXDebugLog(@"jsContext dead");
 }
 
 @end
