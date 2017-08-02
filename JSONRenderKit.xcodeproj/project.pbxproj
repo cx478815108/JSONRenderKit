@@ -38,6 +38,7 @@
 		9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSeparator.m"; sourceTree = "<group>"; };
 		9BEE41C21F316D2C00721C1B /* Spider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spider.h; sourceTree = "<group>"; };
 		9BEE41C31F316D2C00721C1B /* Spider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spider.m; sourceTree = "<group>"; };
+		9BEE41C51F316EC200721C1B /* CXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXMacros.h; sourceTree = "<group>"; };
 		9BF92A701F09CCCA00E838CD /* JSONRenderKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONRenderKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF92A741F09CCCA00E838CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BF92A761F09CCCA00E838CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		9BF92A7F1F09CCCA00E838CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BF92A821F09CCCA00E838CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BF92A841F09CCCA00E838CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BF92A8C1F09CD6F00E838CD /* CXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXMacros.h; sourceTree = "<group>"; };
 		9BF92AA51F09D16500E838CD /* NSObject+SSRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSRender.h"; sourceTree = "<group>"; };
 		9BF92AA61F09D16500E838CD /* NSObject+SSRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSRender.m"; sourceTree = "<group>"; };
 		9BF92AA91F09D16500E838CD /* UIColor+SSRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SSRender.h"; sourceTree = "<group>"; };
@@ -122,7 +122,6 @@
 				9BF92A7F1F09CCCA00E838CD /* Assets.xcassets */,
 				9BF92A811F09CCCA00E838CD /* LaunchScreen.storyboard */,
 				9BF92A841F09CCCA00E838CD /* Info.plist */,
-				9BF92A8C1F09CD6F00E838CD /* CXMacros.h */,
 				9BF92A731F09CCCA00E838CD /* Supporting Files */,
 			);
 			path = JSONRenderKit;
@@ -174,6 +173,7 @@
 		9BF92AAF1F09D16500E838CD /* NativeSupport */ = {
 			isa = PBXGroup;
 			children = (
+				9BEE41C51F316EC200721C1B /* CXMacros.h */,
 				9BF92ACC1F09EEBF00E838CD /* SSListView */,
 				9BF92AC51F09E14500E838CD /* UI.h */,
 				9BF92AC61F09E14600E838CD /* UI.m */,
