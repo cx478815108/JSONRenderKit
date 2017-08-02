@@ -113,7 +113,7 @@
 @property(nonatomic ,strong) UIViewSeparator *ss_separator;
 @end
 
-@implementation UIView (FSeparator)
+@implementation UIView (SSeparator)
 
 + (void)swizzleOldSelector:(SEL)oldSelector newSelector:(SEL)newSelector{
     Class class = [self class];

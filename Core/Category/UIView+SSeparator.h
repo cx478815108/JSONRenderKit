@@ -27,6 +27,6 @@ typedef NS_OPTIONS(NSUInteger, UISeparatorDirection) {
 
 typedef void (^UIViewSeparatorBlock)(UIViewSeparator *ss_separator);
 
-@interface UIView (FSeparator)
+@interface UIView (SSeparator)
 -(void)ss_setSeparator:(UIViewSeparatorBlock)separator;
 @end

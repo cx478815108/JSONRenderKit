@@ -11,6 +11,7 @@
 		9B3D83601F2DAE8100EE5020 /* Service.py in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D835F1F2DAE8100EE5020 /* Service.py */; };
 		9BB2A7491F20E639007A9432 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2A7481F20E639007A9432 /* SSTool.js */; };
 		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
+		9BEE41C41F316D2C00721C1B /* Spider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C31F316D2C00721C1B /* Spider.m */; };
 		9BF92A751F09CCCA00E838CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A741F09CCCA00E838CD /* main.m */; };
 		9BF92A781F09CCCA00E838CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A771F09CCCA00E838CD /* AppDelegate.m */; };
 		9BF92A7B1F09CCCA00E838CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A7A1F09CCCA00E838CD /* ViewController.m */; };
@@ -21,7 +22,6 @@
 		9BF92AB41F09D16500E838CD /* UIColor+SSRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AAA1F09D16500E838CD /* UIColor+SSRender.m */; };
 		9BF92AB61F09D16500E838CD /* SSUIKit.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BF92AAE1F09D16500E838CD /* SSUIKit.js */; };
 		9BF92AB71F09D16500E838CD /* SSJSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AB11F09D16500E838CD /* SSJSContext.m */; };
-		9BF92ABB1F09D3A800E838CD /* Spider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92ABA1F09D3A800E838CD /* Spider.m */; };
 		9BF92AC11F09D4D600E838CD /* UIView+SSRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AC01F09D4D600E838CD /* UIView+SSRender.m */; };
 		9BF92AC41F09D89300E838CD /* SSBaseRenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AC31F09D89300E838CD /* SSBaseRenderController.m */; };
 		9BF92AC71F09E14600E838CD /* UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AC61F09E14600E838CD /* UI.m */; };
@@ -36,6 +36,8 @@
 		9BB2A7481F20E639007A9432 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
 		9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSeparator.h"; sourceTree = "<group>"; };
 		9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSeparator.m"; sourceTree = "<group>"; };
+		9BEE41C21F316D2C00721C1B /* Spider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spider.h; sourceTree = "<group>"; };
+		9BEE41C31F316D2C00721C1B /* Spider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spider.m; sourceTree = "<group>"; };
 		9BF92A701F09CCCA00E838CD /* JSONRenderKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONRenderKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF92A741F09CCCA00E838CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BF92A761F09CCCA00E838CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,8 +56,6 @@
 		9BF92AAE1F09D16500E838CD /* SSUIKit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSUIKit.js; sourceTree = "<group>"; };
 		9BF92AB01F09D16500E838CD /* SSJSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSJSContext.h; sourceTree = "<group>"; };
 		9BF92AB11F09D16500E838CD /* SSJSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSJSContext.m; sourceTree = "<group>"; };
-		9BF92AB91F09D3A800E838CD /* Spider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spider.h; sourceTree = "<group>"; };
-		9BF92ABA1F09D3A800E838CD /* Spider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spider.m; sourceTree = "<group>"; };
 		9BF92ABF1F09D4D600E838CD /* UIView+SSRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSRender.h"; sourceTree = "<group>"; };
 		9BF92AC01F09D4D600E838CD /* UIView+SSRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSRender.m"; sourceTree = "<group>"; };
 		9BF92AC21F09D89300E838CD /* SSBaseRenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBaseRenderController.h; sourceTree = "<group>"; };
@@ -114,6 +114,8 @@
 			children = (
 				9BF92A761F09CCCA00E838CD /* AppDelegate.h */,
 				9BF92A771F09CCCA00E838CD /* AppDelegate.m */,
+				9BEE41C21F316D2C00721C1B /* Spider.h */,
+				9BEE41C31F316D2C00721C1B /* Spider.m */,
 				9BF92A791F09CCCA00E838CD /* ViewController.h */,
 				9BF92A7A1F09CCCA00E838CD /* ViewController.m */,
 				9BF92A7C1F09CCCA00E838CD /* Main.storyboard */,
@@ -137,7 +139,6 @@
 		9BF92A8A1F09CD4000E838CD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				9BF92AB81F09D39500E838CD /* Vendor */,
 				9BF92AA41F09D16500E838CD /* Category */,
 				9BF92AAD1F09D16500E838CD /* JavaScript */,
 				9BF92AAF1F09D16500E838CD /* NativeSupport */,
@@ -182,15 +183,6 @@
 				9BF92AC31F09D89300E838CD /* SSBaseRenderController.m */,
 			);
 			path = NativeSupport;
-			sourceTree = "<group>";
-		};
-		9BF92AB81F09D39500E838CD /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				9BF92AB91F09D3A800E838CD /* Spider.h */,
-				9BF92ABA1F09D3A800E838CD /* Spider.m */,
-			);
-			path = Vendor;
 			sourceTree = "<group>";
 		};
 		9BF92ACC1F09EEBF00E838CD /* SSListView */ = {
@@ -338,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEE41C41F316D2C00721C1B /* Spider.m in Sources */,
 				9BF92AC71F09E14600E838CD /* UI.m in Sources */,
 				9BF92AC41F09D89300E838CD /* SSBaseRenderController.m in Sources */,
 				9BF92AB71F09D16500E838CD /* SSJSContext.m in Sources */,
@@ -350,7 +343,6 @@
 				9BF92A751F09CCCA00E838CD /* main.m in Sources */,
 				9BF92AB21F09D16500E838CD /* NSObject+SSRender.m in Sources */,
 				9BF92AB41F09D16500E838CD /* UIColor+SSRender.m in Sources */,
-				9BF92ABB1F09D3A800E838CD /* Spider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
