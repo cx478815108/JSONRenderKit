@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SSJSContext;
-static NSString *SSViewDidAppearNotification     = @"ViewDidAppearNotification";
-static NSString *SSViewDidDisappearNotification  = @"ViewDidDisappearNotification";
+FOUNDATION_EXPORT NSString * const SSViewDidAppearNotification;
+FOUNDATION_EXPORT NSString * const SSViewDidDisappearNotification;
 
+@class SSJSContext;
 @interface SSBaseRenderController : UIViewController
 @property(nonatomic ,strong) SSJSContext *jsContext;
 @property(nonatomic ,copy  ) NSString    *url;
+@property(nonatomic ,strong ,readonly) UIActivityIndicatorView *indicatorView;
++(SSBaseRenderController *)currentController;
++(void)setCurrentController:(SSBaseRenderController *)controller;
 -(void)startRender;
+-(void)showIndicator;
+-(void)hideIndicator;
 @end

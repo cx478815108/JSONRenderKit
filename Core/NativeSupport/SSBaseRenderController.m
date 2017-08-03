@@ -12,45 +12,65 @@
 #import "UIColor+SSRender.h"
 #import "CXMacros.h"
 
+NSString *const SSViewDidAppearNotification     = @"ViewDidAppearNotification";
+NSString *const SSViewDidDisappearNotification  = @"ViewDidDisappearNotification";
+
+SSBaseRenderController *_currentRenderController = nil;
+
 @interface SSBaseRenderController ()
-@property(nonatomic ,strong) NSDictionary            *config;
-@property(nonatomic ,strong) UIActivityIndicatorView *indicatorView;
+@property(nonatomic ,strong) NSDictionary *config;
+@property(nonatomic ,strong ,readwrite) UIActivityIndicatorView *indicatorView;
+
 @end
 
 @implementation SSBaseRenderController
 
++(SSBaseRenderController *)currentController
+{
+    return _currentRenderController;
+}
+
++(void)setCurrentController:(SSBaseRenderController *)controller
+{
+    _currentRenderController=controller;
+}
+
 #pragma mark - life circle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"详情";
+    self.title                = @"详情";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.jsContext = [SSJSContext context];
+    self.jsContext            = [SSJSContext context];
     [self startRender];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [SSBaseRenderController setCurrentController:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:SSViewDidAppearNotification object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [SSBaseRenderController setCurrentController:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:SSViewDidDisappearNotification object:nil];
     [self.jsContext evaluateScript:@"controller.viewDidUnmount()"];
 }
 
+
+#pragma mark - event
 -(void)didPressedRightItem
 {
     [self.jsContext evaluateScript:@"controller.rightButtonClick()"];
 }
 
 -(void)didReceiveRenderJSON:(NSDictionary *)json{
-    UIView *wrapperView = [self.jsContext renderWithJSON:json];
+    UIView *wrapperView  = [self.jsContext renderWithJSON:json];
     [self.view addSubview:wrapperView];
     [self.view bringSubviewToFront:self.indicatorView];
-    self.config = json[@"controller"];
+    self.config  = json[@"controller"];
     [self.jsContext evaluateScript:@"controller.viewDidMount()"];
 }
 
@@ -58,17 +78,27 @@
 -(void)startRender
 {
     if (!(self.url && [self.url hasPrefix:@"http"])) return;
-    [self.indicatorView startAnimating];
+    [self showIndicator];
     [SSJSContext setCurrentContext:self.jsContext];
     [Spider getWithURLString:self.url parameters:nil success:^(id responseObject) {
-        [self.indicatorView stopAnimating];
+        [self hideIndicator];
         NSDictionary *json  = responseObject;
         [self didReceiveRenderJSON:json];
     } failure:^(NSError *netError) {
         [self.indicatorView stopAnimating];
-        [self.jsContext evaluateScript:@"controller.viewMountFailed()"];
-        NSLog(@"%@",netError);
+        CXDebugLog(@"%@",netError);
     }];
+}
+
+-(void)showIndicator
+{
+    [self.view bringSubviewToFront:self.indicatorView];
+    [self.indicatorView startAnimating];
+}
+
+-(void)hideIndicator
+{
+    [self.indicatorView stopAnimating];
 }
 
 #pragma mark - touch event 
@@ -82,18 +112,18 @@
 {
     _config = config;
     if (_config == nil) return;
-    self.title=_config[@"title"]?:@"详情";
+    self.title = _config[@"title"]?:@"详情";
     NSString *bgColor = _config[@"backgroundColor"];
-    if (bgColor) {
-        self.view.backgroundColor=[UIColor ss_colorWithString:bgColor];
-    }
+    if (bgColor) { self.view.backgroundColor=[UIColor ss_colorWithString:bgColor];}
     
     NSDictionary *rightButton = _config[@"rightButton"];
     if (!rightButton) return;
     
     NSString *rightItemTitle = rightButton[@"title"];
     if (rightItemTitle) {
-        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:rightItemTitle style:(UIBarButtonItemStylePlain) target:self action:@selector(didPressedRightItem)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:rightItemTitle
+                                                                                  style:(UIBarButtonItemStylePlain)
+                                                                                 target:self action:@selector(didPressedRightItem)];
     }
 }
 
