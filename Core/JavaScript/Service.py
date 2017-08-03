@@ -88,52 +88,298 @@ appJSON={
         "fetchData":{
             "viewId":"listbox",
             "URLRequest":{
-	            "type":"get",
+	            "type":"GET",
 	            "url":"http://palmwhut.sinaapp.com/member/get_app?timestamp=0&platform=ios",
-	            "check":"${(json)=>{return json.status == '200'}}", #进行检查 必须返回一个布尔值
-	            "failure":"${(desc)=>{$UI.alert('信息获取失败',desc)}}",
-	            "success":"${(data)=>{$props.apps=$props.apps.concat(data);}}", #将结果进行保存
-	            "dataArrayPath":"data",
+	            "check":"${(json)=>{return json.status == '200';}}",
+	            "failure":"${(desc)=>{UI.alert('信息获取失败',desc)}}",
+	            "extractData":"${(json)=>{$props.apps=$props.apps.concat(json.data);return json.data;}}",
                 "itemToStyleTemplate":{
-                "subStyles":[
-                	{
-                		"viewId":"appname",
-                		"style":{
-                			"text":"`${item.name}`",
-                			}
+                	"subStyles":[
+                		{
+	                		"viewId":"appname",
+		                	"style":{
+		                		"text":"`${item.name}`",
+	                		}
                 		},
                 		{
                 			"viewId":"appicon",
                 			"style":{
                 				"image":"`${item.icon['3x']}`",#item.icon.3x 语法格式不正确
-                                }
-                            },
+                            }
+                        },
                     ]
                 },
-                "render":"${(renderData)=>{$getView('listbox').setDataArray([]).addData(renderData).reloadData()}}",
+                "render":"${(data)=>{$getView('listbox').setDataArray([]).addDatas(data).reloadData()}}",
             },
         },
-        "newState":{
-            "viewId":"header",
-            "style":{
-                "backgroundColor":"rgb(140,140,140)",
-                "subStyles":[
-                	{
-                		"viewId":"nameLabel",
-                		"style":{
-                			"text":"`index${$props.testIndex}`",
-                		}
-                	},
-	                {
-	                "viewId":"testBtn",
-	                "style":{
-	                	"title":"`new index${$props.testIndex}`",
-	                	}
-	                }
-                ]
-        	}
-		}
 	}
+}
+
+translation={
+    "controller":{
+        "title":"翻译示例",
+    },
+    "components":[
+    	{
+    		"id":"searchField",
+    		"type":"TextField",
+    		"style":{
+    			"position":"`{{6,6},{${UI.screenW-80},36}}`",
+	            "textColor":"rgb(80,80,80)",
+	            "borderStyle":"none",
+	            "backgroundColor":"rgb(240,240,240)",
+	            "cornerRadius":4,
+	            "placeholder":"请输入你要翻译的单词",
+    		}
+    	},
+    	{
+    		"id":"searchButton",
+    		"type":"Button",
+    		"style":{
+    			"position":"`{{${UI.screenW-68},4},{68,40}}`",
+	            "titleColor":"rgb(40,40,40)",
+	            "title":"search"
+    		},
+    		"click":"${()=>{$dispatch('transAction');}}"
+    	},
+    	{
+    		"id":"resultList",
+    		"type":"ListView",
+    		"style":{
+    			"position":"`{{0,60},{${UI.screenW},${UI.screenH-60}}}`",
+        		"itemSize":"`{${UI.screenW},54}`",
+        		"itemVMarign":0,
+        		"scrollDirection":"vertical",
+    		},
+    		"itemStyle":{
+        		"separatorDirection":"bottom",
+        		"separatorColor":"rgb(240,240,240)",
+        	},
+        	"item":[
+        		{
+        			"id":"fixLabel",
+        			"type":"Label",
+        			"style":{
+        				"position":"`{{13,8},{${UI.screenW-13},20}}`",
+        				"fontSize":12,
+        				"textColor":"rgb(200,200,200)",
+        			}
+        		},
+        		{
+        			"id":"descLabel",
+        			"type":"Label",
+        			"style":{
+        				"position":"`{{13,30},{${UI.screenW-13},20}}`",
+        				"fontSize":14,
+        				"textColor":"rgb(80,80,80)",
+        			}
+        		},
+        	],
+        	"dataArray":[
+        		{
+        			"subStyles":[
+	        			{
+	        				"viewId":"fixLabel",
+	                   		"style":{
+	                   			"text":"译文",
+	                   		},
+                		},
+                		{
+	        				"viewId":"descLabel",
+	                   		"style":{
+	                   			"text":"Who am I?",
+	                   		},
+                		},
+           			]
+       			},
+       			{
+        			"subStyles":[
+	        			{
+	        				"viewId":"fixLabel",
+	                   		"style":{
+	                   			"text":"译文",
+	                   		},
+                		},
+                		{
+	        				"viewId":"descLabel",
+	                   		"style":{
+	                   			"text":"Who are you?",
+	                   		},
+                		},
+           			]
+       			},
+        	]
+    	}
+    ],
+    "props":{
+    	"transResults":[]
+    },
+    "actions":{
+    	"transAction":{
+            "viewId":"resultList",
+            "URLRequest":{
+	            "type":"get",
+	            "url":"`https://dict.bing.com.cn/api/http/v2/4154AA7A1FC54ad7A84A0236AA4DCAF3/zh-cn/en-us/?q=${$getView('searchField').text}&format=application/json`",
+	            "check":"${(json)=>{return true}}", #进行检查 必须返回一个布尔值
+	            "failure":"${(desc)=>{UI.alert('信息获取失败',desc)}}",
+	            # "success":"${(data)=>{$props.apps=$props.apps.concat(data);}}", #将结果进行保存
+	            "extractData":"${(json)=>{return json.LEX.C_DEF[1].SEN}}",
+	            "willRender":"",
+                "willSend":"${()=>{UI.showIndicator('gray');}}",
+                "itemToStyleTemplate":{
+                    "subStyles":[
+                		{
+                			"viewId":"descLabel",
+                			"style":{
+                				"text":"`${item.D}`",#item.icon.3x 语法格式不正确
+                            }
+                        },
+                        {
+                			"viewId":"fixLabel",
+                			"style":{
+                				"text":"译文",#item.icon.3x 语法格式不正确
+                            }
+                        },
+                    ]
+                },
+                "render":"${(renderData)=>{$getView('resultList').setDataArray([]).addDatas(renderData).reloadData()}}",
+                "didRender":"${()=>{UI.hideIndicatorDelay(0.618)}}",
+            },
+        },
+    }
+}
+
+
+todo={
+    "controller":{
+        "title":"todo",
+    },
+    "components":[
+        {
+            "id":"addField",
+            "type":"TextField",
+            "style":{
+                "position":"`{{6,6},{${UI.screenW-80},36}}`",
+                "textColor":"rgb(80,80,80)",
+                "borderStyle":"none",
+                "backgroundColor":"rgb(240,240,240)",
+                "cornerRadius":4,
+                "placeholder":"请输入项目",
+            }
+        },
+        {
+            "id":"addButton",
+            "type":"Button",
+            "style":{
+                "position":"`{{${UI.screenW-68},4},{68,40}}`",
+                "titleColor":"rgb(40,40,40)",
+                "title":"add"
+            },
+            "click":"${()=>{$dispatch('addToDo');}}"
+        },
+        {
+            "id":"todoList",
+            "type":"ListView",
+            "style":{
+                "position":"`{{0,60},{${UI.screenW},${UI.screenH-60}}}`",
+                "itemSize":"`{${UI.screenW},60}`",
+                "itemVMarign":0,
+                "scrollDirection":"vertical",
+            },
+            "itemStyle":{
+                "separatorDirection":"bottom",
+                "separatorColor":"rgb(240,240,240)",
+                "itemHighlightColor":"rgb(220,220,220)",
+            },
+            "item":[
+                {
+                    "id":"nameLabel",
+                    "type":"Label",
+                    "style":{
+                        "position":"`{{13,8},{${UI.screenW/2-13},20}}`",
+                        "fontSize":18,
+                        "textColor":"rgb(20,20,20)",
+                        "adjustTextFont":1,
+                    }
+                },
+                {
+                    "id":"deleteLabel",
+                    "type":"Label",
+                    "style":{
+                        "position":"`{{13,30},{${UI.screenW/2-13},20}}`",
+                        "fontSize":14,
+                        "textColor":"rgb(90,90,90)",
+                        "adjustTextFont":1,
+                    }
+                },
+            ],
+            "clickItem":"${(index)=>{$props.selectedIndex=index;$dispatch('removeToDo')}}",
+            "dataArray":[
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"nameLabel",
+                            "style":{
+                                "text":"apple",
+                            },
+                        },
+                        {
+                            "viewId":"deleteLabel",
+                            "style":{
+                                "text":"tap to delete",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"nameLabel",
+                            "style":{
+                                "text":"orange",
+                            },
+                        },
+                        {
+                            "viewId":"deleteLabel",
+                            "style":{
+                                "text":"tap to delete",
+                            },
+                        },
+                    ]
+                },
+            ]
+        }],
+    "props":{
+        "selectedIndex":-1,
+        "toDoItemStyle":{
+            "subStyles":[
+                {
+                    "viewId":"nameLabel",
+                    "style":{
+                        "text":"`${$getView('addField').text}`",
+                    },
+                },
+                {
+                    "viewId":"deleteLabel",
+                    "style":{
+                        "text":"tap to delete",
+                    },
+                },
+            ]
+        },
+    },
+    "actions":{
+        "removeToDo":{
+            "viewId":"todoList",
+            "valKey":"dataArray",
+            "reduce":"${(oldVal)=>{return oldVal.removeAtIndex($props.selectedIndex);}}",
+        },
+        "addToDo":{
+            "viewId":"todoList",
+            "valKey":"dataArray",
+            "reduce":"${(oldVal)=>{oldVal.push($props.getCopy('toDoItemStyle'));return oldVal;}}",
+        }
+    }
 }
 
 @app.route('/')
@@ -143,6 +389,14 @@ def hello_world():
 @app.route('/appjson', methods=['GET'])
 def get_appjson():
     return jsonify(appJSON)
+
+@app.route('/trans', methods=['GET'])
+def get_translation():
+    return jsonify(translation)
+
+@app.route('/todo', methods=['GET'])
+def get_todo():
+    return jsonify(todo)
 
 if __name__ == '__main__':
     app.run()
