@@ -34,7 +34,12 @@
 ```
 
 ## Run
-使用Xcode7以上打开这个项目，在运行之前，需要确保你运行了项目文件夹`Core/JavaScript/Service.py` 脚本。推荐使用`sublime`，搜索一下`sublime build Python` 配置好后 用其打开项目`Core/JavaScript`文件夹，接着`command + D` 出现以下截图即正常！启动的`Python`进程可以用活动监视器查找`Python`关闭。
+
+1. 运行`Core/JavaScript/Service.py` 脚本
+2. 用Xcode打开这个project，并运行即可
+
+py脚本推荐使用`sublime`打开，搜索`sublime` 的Python build，并配置好后 按下`command + B` 出现以下截图即正常！当然你用其他方法启动py脚本也可以。
+启动的`Python`进程可以用活动监视器查找`Python`关闭。
 
 ![](http://ou3yprhbt.bkt.clouddn.com/sublime.png)
 
