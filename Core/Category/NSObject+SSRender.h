@@ -18,10 +18,16 @@
 
 /**
  JS调用OC
- JS invoke the method of Objective-C
- @param aSelector description
- @param objects 参数数组
+ @param aSelector aSelector
+ @param objects 参数数组 最多支持4个参数
  @return 返回值
+ */
+
+/**
+ JS invoke the method of Objective-C
+ @param aSelector aSelector
+ @param objects the parameters array. The maximum number of the parameters is four.
+ @return the returned value
  */
 - (id)js_performSelector:(SEL)aSelector withObjects:(NSArray *)objects;
 @end

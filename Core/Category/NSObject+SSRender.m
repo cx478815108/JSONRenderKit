@@ -8,10 +8,12 @@
 
 #import "NSObject+SSRender.h"
 #import "SSJSContext.h"
+#import "CXMacros.h"
 #import <objc/message.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-//#define SSRenderMsgSendWithReturn(...) ((id (*)(id, SEL, ...))objc_msgSend)(__VA_ARGS__)
+#define SSRenderMsgSendWithoutReturn(...) ((void (*)(id, SEL, ...))objc_msgSend)(__VA_ARGS__)
+#define SSRenderMsgSendWithReturn(...) ((id (*)(id, SEL, ...))objc_msgSend)(__VA_ARGS__)
 
 @implementation NSObject (SSRender)
 -(JSValue *)jsValue
@@ -29,25 +31,50 @@
     if (![self respondsToSelector:aSelector]) return nil;
     
     //方法签名(对方法的描述)
+    //get the signature of self
     NSMethodSignature *sig = [[self class] instanceMethodSignatureForSelector:aSelector];
-    if (sig == nil) return nil;
-
-    // 方法调用者 方法名 方法参数 方法返回值
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-    invocation.target = self;
-    invocation.selector = aSelector;
-    
-    for (int i = 0; i< objs.count; i++) {
-        id objct = objs[i] ;
-        if (![objct isKindOfClass:[NSNull class]]) [invocation setArgument:&objct atIndex:i+2];
+    if (sig == nil) {
+        CXDebugLog(@"%@ connot find the %@",self,NSStringFromSelector(aSelector));
+        return nil;
     }
-    //调用方法
-    [invocation invoke];
     
-    // 获取返回值
-    id result = nil;
-    if (sig.methodReturnLength) { [invocation getReturnValue:&result];}
-    return result;
+    NSUInteger returnLength = sig.methodReturnLength;
+    id returnValue = nil;
+    switch (objs.count) {
+        case 0:
+        {
+            if(returnLength){ returnValue = SSRenderMsgSendWithReturn(self,aSelector);}
+            else            { SSRenderMsgSendWithoutReturn(self,aSelector);}
+            break;
+        }
+        case 1:
+        {
+            if(returnLength){ returnValue = SSRenderMsgSendWithReturn(self,aSelector);}
+            else            { SSRenderMsgSendWithoutReturn(self,aSelector,objs[0]);}
+            break;
+        }
+        case 2:
+        {
+            if(returnLength){ returnValue = SSRenderMsgSendWithReturn(self,aSelector);}
+            else            { SSRenderMsgSendWithoutReturn(self,aSelector,objs[0],objs[1]);}
+            break;
+        }
+        case 3:
+        {
+            if(returnLength){ returnValue = SSRenderMsgSendWithReturn(self,aSelector);}
+            else            { SSRenderMsgSendWithoutReturn(self,aSelector,objs[0],objs[1],objs[2]);}
+            break;
+        }
+        case 4:
+        {
+            if(returnLength){ returnValue = SSRenderMsgSendWithReturn(self,aSelector);}
+            else            { SSRenderMsgSendWithoutReturn(self,aSelector,objs[0],objs[1],objs[2],objs[3]);}
+            break;
+        }
+        default:
+            break;
+    }
+    return returnValue;
 }
 
 @end
