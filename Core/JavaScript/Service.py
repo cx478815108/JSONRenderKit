@@ -281,7 +281,7 @@ todo={
             "id":"todoList",
             "type":"ListView",
             "style":{
-                "position":"`{{0,60},{${UI.screenW},${UI.screenH-60}}}`",
+                "position":"`{{0,60},{${UI.screenW},${UI.screenH-60-64}}}`",
                 "itemSize":"`{${UI.screenW},60}`",
                 "itemVMarign":0,
                 "scrollDirection":"vertical",
