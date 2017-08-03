@@ -30,7 +30,7 @@
 -(void)injectNativeSupport;
 
 /**
- release the strong refrence objects between Javasrcipts and Objective-c,
+ release the strong refrence objects between Javasrcipt and Objective-C,
  or it will cause the memory leak
  */
 -(void)releaseObjcs;
