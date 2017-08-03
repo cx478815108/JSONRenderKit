@@ -11,8 +11,12 @@
 
 @protocol UI <JSExport>
 @optional
+
 JSExportAs(log, -(void)log:(NSString *)msg);
 JSExportAs(alert, -(void)alertWithTitle:(NSString *)title msg:(NSString *)msg);
+JSExportAs(showIndicator, -(void)showIndicatorWithStyle:(NSString *)style);
+JSExportAs(hideIndicatorDelay, -(void)hideIndicatorDelay:(NSInteger)delay);
+
 @property(nonatomic, assign, readonly) CGFloat  screenW;
 @property(nonatomic, assign, readonly) CGFloat  screenH;
 @property(nonatomic, copy  , readonly) NSString *themeColor;

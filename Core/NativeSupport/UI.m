@@ -8,6 +8,7 @@
 
 #import "UI.h"
 #import "CXMacros.h"
+#import "SSBaseRenderController.h"
 @implementation UI
 
 -(void)log:(NSString *)msg
@@ -17,14 +18,41 @@
 
 -(void)alertWithTitle:(NSString *)title msg:(NSString *)msg
 {
-    UIAlertController *alert=[UIAlertController alertControllerWithTitle:title message:msg?msg:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg?msg:@""
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     @weakify(alert)
-    UIAlertAction *action=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action=[UIAlertAction actionWithTitle:@"确定"
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction * _Nonnull action) {
         @strongify(alert)
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
     [alert addAction:action];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)showIndicatorWithStyle:(NSString *)style
+{
+    SSBaseRenderController *renderController = [SSBaseRenderController currentController];
+    if ([style isEqualToString:@"whitelarge"]) {
+        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhiteLarge;
+    }
+    else if ([style isEqualToString:@"white"]) {
+        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+    }
+    else if ([style isEqualToString:@"gray"]){
+        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleGray;
+    }
+    [renderController showIndicator];
+}
+
+-(void)hideIndicatorDelay:(NSInteger)delay
+{
+    SSBaseRenderController *renderController = [SSBaseRenderController currentController];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [renderController hideIndicator];
+    });
 }
 
 -(CGFloat)screenW
