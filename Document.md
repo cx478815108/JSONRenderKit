@@ -1,4 +1,7 @@
 
+# 文档说明
+
+文档可能有遗漏的地方，请看Demo里面 Service.py里面JSON的编写！
 
 ## JSON中可以调用的全局对象,函数,属性
 
@@ -8,7 +11,8 @@
 | --- | --- |
 | UI.log(msg) | 在Xcode打印台输出msg |
 | UI.alert(title,msg) | 弹出提示框,title标题,msg信息 |
-| UI.showIndicator(style) | 弹出提示器,style可取 'white','whitelarge','gray'|
+| UI.showIndicator(style) | 弹出菊花提示器,style可取 'white','whitelarge','gray'|
+| hideIndicatorDelay(time) | time秒后关闭菊花指示器|
 | UI.screenW | 当前iOS设备的屏幕宽度 |
 | UI.screenH | 当前iOS设备的屏幕高度 |
 
