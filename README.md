@@ -12,7 +12,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前我已放进app -[掌上理工大](http://app.wutnews.net/#/) （app store 可以搜索）里面使用啦。代码有详细注释你也可以修改源代码并扩展新组件后放进的你自己的项目，重要的是你也可以参考JavaScript 是怎样和OC 进行交互的。要是有兴趣，你也可以自己将他打造成为一个有用的工具。
 
 ## 快速开始
-开始写一个JSON尝试一下吧！JSON文档在这里。
+开始写一个JSON尝试一下吧！[JSON文档](https://github.com/cx478815108/JSONRenderKit/blob/master/Document.md)在这里。
 
 ![](http://ou3yprhbt.bkt.clouddn.com/all.png)
 
