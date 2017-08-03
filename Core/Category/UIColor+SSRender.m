@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+SSRender.h"
+#import "CXMacros.h"
 
 @interface NSString(SSRender)
 - (NSString *)ss_stringByTrim;
@@ -61,47 +62,41 @@ static BOOL ss_hexStrToRGBA(NSString *str,CGFloat *r, CGFloat *g, CGFloat *b, CG
 +(instancetype)ss_colorWithString:(NSString *)string
 {
     NSString *testObj=[string lowercaseString];
-    if ([testObj hasPrefix:@"rgb"]) {
-        return [self ss_colorWithRGBString:testObj];
-    }
+    if ([testObj hasPrefix:@"rgb"]) { return [self ss_colorWithRGBString:testObj];}
     else return [self ss_colorWithHexString:testObj];
 }
 
 +(instancetype)ss_colorWithHexString:(NSString *)hexStr
 {
     CGFloat r, g, b, a;
-    if (ss_hexStrToRGBA(hexStr, &r, &g, &b, &a)) {
-        return [UIColor colorWithRed:r green:g blue:b alpha:a];
-    }
+    if (ss_hexStrToRGBA(hexStr, &r, &g, &b, &a)) { return [UIColor colorWithRed:r green:g blue:b alpha:a];}
     return nil;
 }
 
 +(instancetype)ss_colorWithRGBString:(NSString *)rgbString
 {
-    NSString *testObj=[rgbString lowercaseString];
+    UIColor *color    = nil;
+    NSString *testObj = [rgbString lowercaseString];
     if ([testObj hasPrefix:@"rgb("] && [testObj hasSuffix:@")"]) {
-        NSString *newStr= [testObj stringByReplacingOccurrencesOfString:@"rgb(" withString:@""];
-        newStr  = [newStr stringByReplacingOccurrencesOfString:@")" withString:@""];
-        NSArray *rgbs=[newStr componentsSeparatedByString:@","];
-        if (rgbs && rgbs.count==3) {
-            UIColor *color = [UIColor colorWithRed:[rgbs[0] floatValue]/255.0 green:[rgbs[1] floatValue]/255.0 blue:[rgbs[2] floatValue]/255.0 alpha:1];
-            return color;
+        NSString *newStr = [testObj stringByReplacingOccurrencesOfString:@"rgb(" withString:@""];
+        newStr           = [newStr  stringByReplacingOccurrencesOfString:@")" withString:@""];
+        NSArray *rgbs    = [newStr  componentsSeparatedByString:@","];
+        if (rgbs && rgbs.count == 3) { color = kColor([rgbs[0] floatValue],
+                                                      [rgbs[1] floatValue],
+                                                      [rgbs[2] floatValue]);
         }
-        return nil;
     }
-    
-    if ([testObj hasPrefix:@"rgba("] && [testObj hasSuffix:@")"]) {
-        NSString *newStr= [testObj stringByReplacingOccurrencesOfString:@"rgba(" withString:@""];
-        newStr  = [newStr stringByReplacingOccurrencesOfString:@")" withString:@""];
-        NSArray *rgbas=[newStr componentsSeparatedByString:@","];
-        if (rgbas && rgbas.count==4) {
-            UIColor *color = [UIColor colorWithRed:[rgbas[0] floatValue]/255.0 green:[rgbas[1] floatValue]/255.0 blue:[rgbas[2] floatValue]/255.0 alpha:[rgbas[3] floatValue]];
-            return color;
+    else if ([testObj hasPrefix:@"rgba("] && [testObj hasSuffix:@")"]) {
+        NSString *newStr = [testObj stringByReplacingOccurrencesOfString:@"rgba(" withString:@""];
+        newStr           = [newStr  stringByReplacingOccurrencesOfString:@")" withString:@""];
+        NSArray *rgbas   = [newStr  componentsSeparatedByString:@","];
+        if (rgbas && rgbas.count == 4) { color = kColorAlpha([rgbas[0] floatValue],
+                                                             [rgbas[2] floatValue],
+                                                             [rgbas[2] floatValue],
+                                                             [rgbas[3] floatValue]);
         }
-        return nil;
     }
-
-    return nil;
+    return color;
 }
 
 @end
