@@ -134,13 +134,17 @@ SSJSContext *_currentContext=nil;
     //run the prepared script SSTool.js
     NSString *toolPath = [[NSBundle mainBundle] pathForResource:@"SSTool" ofType:@"js"];
     NSString *sstool   = [NSString stringWithContentsOfFile:toolPath encoding:NSUTF8StringEncoding error:nil];
-    [self evaluateScript:sstool];
+    //增加sourceURL 你可以在Safari中 给脚本打断点调试
+    NSURL *toolURL = [NSURL URLWithString:toolPath];
+    [self evaluateScript:sstool withSourceURL:toolURL];
     
     //执行相应脚本
     //run the prepared script SSUIKit.js
     NSString *kitPath = [[NSBundle mainBundle] pathForResource:@"SSUIKit" ofType:@"js"];
     NSString *sskit   = [NSString stringWithContentsOfFile:kitPath encoding:NSUTF8StringEncoding error:nil];
-    [self evaluateScript:sskit];
+    //增加sourceURL 你可以在Safari中 给脚本打断点调试
+    NSURL *kitURL = [NSURL URLWithString:toolPath];
+    [self evaluateScript:sskit withSourceURL:kitURL];
 }
 
 -(UIView *)renderWithJSON:(NSDictionary *)json
