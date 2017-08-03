@@ -25,7 +25,7 @@ class NSObject{
         this.willCreatNative();
         //调用OC方法，创建实例，并保存
         //call the method of Objective-C and save the returned value
-        this.ocPointer = oc_creatObject(this.ocClsName);
+        this.ocPointer = oc_creatObject(this.ocClsName.firstUpperCase());
         this.didCreatNative();
     }
     //已经创建完对象
@@ -93,6 +93,12 @@ class View extends NSObject{
                 let style = element.style;
                 view.setStyle(style);
             });
+        }
+    }
+
+    setState(state){
+        if(state.valKey == 'style'){
+            this.setStyle(state.value);
         }
     }
 
@@ -184,8 +190,7 @@ class Button extends View {
 
     initWithJSON(json){
         super.initWithJSON(json);
-        let clickString=json['click'].replace('${', '{return ');
-        this.clickFun = new Function(clickString)();
+        this.clickFun = json['click'];
     }
 
     didCreatNative(){
@@ -193,7 +198,7 @@ class Button extends View {
     }
 
     didPressedButton(){
-        getType(this.clickFun) == 'function'?this.clickFun():{}
+        this.clickFun.runWithArgs();
     }
 }
 
@@ -210,21 +215,54 @@ class ListView extends View {
         super.initWithJSON(json);
         this.clickItem = json.clickItem;
         this.itemStyle = json.itemStyle;
-        if(json.dataArray){this.setDataArray();}
         this.invokeNative('js_setTemplateComponents:',json.item);
         this.invokeNative('setItemStyle:',this.itemStyle);
+        if(json.dataArray){
+            this.setDataArray(json.dataArray);
+            this.reloadData();
+        }
     }
 
     setDataArray(array){
         this.dataArray = array;
-        this.invokeNative('js_setDataArrays:',array);
         return this;
     }
 
-    addData(array){
-        this.dataArray.concat(array);
-        this.invokeNative('js_addDataWithArray:',array);
+    addDatas(array){
+        this.dataArray = this.dataArray.concat(array);
         return this;
+    }
+
+    removeItemAtIndex(index){
+        this.invokeNative('deleteItemAtIndexString:',''+index);
+        this.dataArray = this.invokeNative('dataArray');
+    }
+
+    addItemAtIndex(index,data){
+        this.invokeNative('addItem:atIndexString:',data,''+index);
+        this.dataArray = this.invokeNative('dataArray');
+    }
+
+    pushItem(data){
+        this.invokeNative('addItemToTrail:',data,''+index);
+        this.dataArray = this.invokeNative('dataArray');
+    }
+
+    popItem(){
+        this.invokeNative('deleteItemAtIndexString:',''+this.dataArray.length);
+        this.dataArray = this.invokeNative('dataArray');
+    }
+
+    setState(state){
+        if(state.valKey == 'itemStyle'){
+            this.itemStyle = state.value;
+            this.invokeNative('setItemStyle:',this.itemStyle);
+            this.reloadData();
+        }
+        else if(state.valKey == 'dataArray'){
+            this.dataArray = state.value;
+            this.reloadData();
+        }
     }
 
     didCreatNative(){
@@ -233,14 +271,13 @@ class ListView extends View {
 
     didSelectItemAtIndex(index){
         if(this.clickItem){
-            if(!isFunString(this.clickItem)) return ;
-            let funScript = this.clickItem.replace('${', '{return ');
-            let fun = new Function(funScript)();
-            fun(index);
+            this.clickItem.runWithArgs(index);
+            this.invokeNative('js_setDataArrays:',this.dataArray);
         }
     }
 
     reloadData(){
+        this.invokeNative('js_setDataArrays:',this.dataArray);
         this.invokeNative('js_reloadData');
         return this;
     }
@@ -262,19 +299,19 @@ class Controller {
 
     viewDidMount(){
         if(this.lifeCircle && this.lifeCircle.viewDidMount){
-            runScript(this.lifeCircle.viewDidMount);
+            this.lifeCircle.viewDidMount.runWithArgs();
         }
     }
 
     viewDidUnmount(){
         if(this.lifeCircle && this.lifeCircle.viewDidUnmount){
-            runScript(this.lifeCircle.viewDidUnmount);
+            this.lifeCircle.viewDidUnmount.runWithArgs();
         }
     }
 
     rightButtonClick(){
         if(this.config && this.config.rightButton){
-            runScript(this.config.rightButton.click);
+            this.config.rightButton.click.runWithArgs();
         }
     }
 
@@ -298,29 +335,14 @@ class AppProps{
             this[key] = props[key];
         }
     }
-}
 
-/**
- * 用于更新视图数据
- * dispatch a given action to the specific view whose is is the viewId with Style to update athe view
- * @param  type  json里面定义好的action
- * @param  type  the action defined in the given json
- */
-let $dispatch = (type)=>{
-    //取action
-    let action = $actions[type];
-    //取出视图
-    let view   = controller.viewStore.get(action.viewId);
-    if(action.style){//
-        //克隆一份
-        let style  = keyValuesClone(action.style);
-        recoverJSON(style);
-        //设置style
-        view.setStyle(style);
+    copy(){
+        let _copy = new AppProps(this);
+        return _copy;
     }
-    else if (action.URLRequest) {
-        let request = new URLRequest(action.URLRequest);
-        request.excute();
+
+    getCopy(valueKey){
+        return keyValuesClone(this[valueKey]);
     }
 }
 
