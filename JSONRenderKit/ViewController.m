@@ -30,10 +30,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SSBaseRenderController *obj = [[SSBaseRenderController alloc] init];
     if (indexPath.row==0) {
-        SSBaseRenderController *obj = [[SSBaseRenderController alloc] init];
-        obj.url=@"http://127.0.0.1:5000/appjson";
-        [self.navigationController pushViewController:obj animated:YES];
+        obj.url=@"http://127.0.0.1:5000/todo";
     }
+    else if (indexPath.row==1) {
+        obj.url=@"http://127.0.0.1:5000/appjson";
+    }
+    else if (indexPath.row==2) {
+        obj.url=@"http://127.0.0.1:5000/trans";
+    }
+    [self.navigationController pushViewController:obj animated:YES];
 }
 @end
