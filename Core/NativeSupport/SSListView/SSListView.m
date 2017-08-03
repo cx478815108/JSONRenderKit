@@ -126,11 +126,15 @@
     return YES;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *itemHighlightColor = self.itemStyle[@"itemHighlightColor"];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    _cachedColor=cell.backgroundColor;
+    _cachedColor=cell.backgroundColor?:[UIColor whiteColor];
     if (itemHighlightColor) {
         cell.backgroundColor=[UIColor ss_colorWithString:itemHighlightColor];
     }
@@ -139,7 +143,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor=_cachedColor;
+    cell.backgroundColor       = _cachedColor;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -149,6 +153,10 @@
     [self collectionView:collectionView didHighlightItemAtIndexPath:indexPath];
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self collectionView:collectionView didUnhighlightItemAtIndexPath:indexPath];
+}
 
 #pragma mark - action
 -(void)deleteItemAtIndexString:(NSString *)index
