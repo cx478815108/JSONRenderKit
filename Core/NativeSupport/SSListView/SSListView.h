@@ -12,8 +12,13 @@
 @property(nonatomic ,strong) NSArray      *templateComponents;
 @property(nonatomic ,strong) NSArray      *dataArray;
 @property(nonatomic ,strong) NSDictionary *itemStyle;
+
 -(void)js_setDataArrays:(NSArray <NSDictionary *>*)array;
 -(void)js_addDataWithArray:(NSArray <NSDictionary *>*)array;
 -(void)js_setTemplateComponents:(NSArray *)templateComponents;
 -(void)js_reloadData;
+
+-(void)deleteItemAtIndexString:(NSString *)index;
+-(void)addItem:(NSDictionary *)item atIndexString:(NSString *)index;
+-(void)addItemToTrail:(NSDictionary *)item;
 @end

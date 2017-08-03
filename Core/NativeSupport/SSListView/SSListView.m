@@ -13,8 +13,7 @@
 #import "UIColor+SSRender.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@interface SSListView()<UICollectionViewDelegateFlowLayout,
-                        UICollectionViewDataSource,
+@interface SSListView()<UICollectionViewDataSource,
                         UICollectionViewDelegate>
 
 @property(nonatomic ,strong) UICollectionView           *collectionView;
@@ -22,7 +21,9 @@
 @property(nonatomic ,strong) NSDictionary               *style;
 @end
 
-@implementation SSListView
+@implementation SSListView{
+    UIColor *_cachedColor;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -93,7 +94,7 @@
 }
 
 
-#pragma mark - 
+#pragma mark - UICollectionViewDataSource & UICollectionViewDelegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -120,9 +121,65 @@
     return listViewCell;
 }
 
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *itemHighlightColor = self.itemStyle[@"itemHighlightColor"];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    _cachedColor=cell.backgroundColor;
+    if (itemHighlightColor) {
+        cell.backgroundColor=[UIColor ss_colorWithString:itemHighlightColor];
+    }
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroundColor=_cachedColor;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.jsValue invokeMethod:@"didSelectItemAtIndex" withArguments:@[@(indexPath.item)]];
+    [self postEndEditingNotification];
+    [self collectionView:collectionView didHighlightItemAtIndexPath:indexPath];
+}
+
+
+#pragma mark - action
+-(void)deleteItemAtIndexString:(NSString *)index
+{
+    NSInteger realIndex = [index integerValue];
+    if (realIndex<0 && self.dataArray.count <= realIndex+1) return;
+    [self.collectionView performBatchUpdates:^{
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataArray];
+        [array removeObjectAtIndex:realIndex];
+        self.dataArray=array;
+        [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:realIndex inSection:0]]];
+    } completion:nil];
+}
+
+-(void)addItemToTrail:(NSDictionary *)item
+{
+    [self addItem:item atIndexString:[NSString stringWithFormat:@"%@",@(self.dataArray.count)]];
+}
+
+-(void)addItem:(NSDictionary *)item atIndexString:(NSString *)index
+{
+    if(![item isKindOfClass:[NSDictionary class]]) return;
+    
+    NSInteger realIndex = [index integerValue];
+    if (realIndex<0 && realIndex>self.dataArray.count) return;
+    [self.collectionView performBatchUpdates:^{
+        NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataArray];
+        [array insertObject:item atIndex:realIndex];
+        self.dataArray=array;
+        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:realIndex]]];
+    } completion:nil];
 }
 
 #pragma mark - getter
