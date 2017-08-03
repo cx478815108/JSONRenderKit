@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 appJSON={
     "controller":{
-        "title":"JSON程序示例",
+        "title":"Speed Dial Squared Up",
         "rightButton":{
             "title":"请求",
             "click":"${()=>{$dispatch('fetchData')}}"
@@ -117,7 +117,7 @@ appJSON={
 
 translation={
     "controller":{
-        "title":"翻译示例",
+        "title":"translation",
     },
     "components":[
     	{
