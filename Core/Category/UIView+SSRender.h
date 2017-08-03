@@ -31,4 +31,6 @@
   set the properties of the subviews according the style
  */
 -(void)js_setSubStyles:(NSArray <NSDictionary *>*)subStyles;
+
+-(void)postEndEditingNotification;
 @end
