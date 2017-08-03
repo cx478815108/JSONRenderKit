@@ -7,9 +7,10 @@
 ## 更简单，更方便地生成iOS 新界面 🚗 🚗 🚗 
 
 **可以说是十分有趣的一个库了，下面简要说明**
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每次想要给app增加新功能，我都要大致经历这样几个不走，编码->测试->打包->提交app store 审核，花费的时间很长，尤其是审核。你可能会说到这已经有现成的解决方案了，ReactNative 就是，并且可以热更新。是的，但是我不想因为简单的需求就引入整个React，增加了app 体积不说，门槛也相应提高了。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSONRenderKit 核心就只几个.h.m 文件，团队其他人只要按照文档写出JSON 就可以为app 输出，战斗力一下子就上来啦😁。重要的是我可以用它给用户很多意想不到的彩蛋，算是能让人兴奋的了！
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前我已放进app -[掌上理工大](http://app.wutnews.net/#/) （app store 可以搜索）里面使用啦。代码有详细注释你也可以修改源代码并扩展新组件后放进的你自己的项目，重要的是你也可以参考JavaScript 是怎样和OC 进行交互的。要是有兴趣，你也可以自己将他打造成为一个有用的工具。
+
+&nbsp;&nbsp;每次想要给app增加新功能，我都要大致经历这样几个不走，编码->测试->打包->提交app store 审核，花费的时间很长，尤其是审核。你可能会说到这已经有现成的解决方案了，ReactNative 就是，并且可以热更新。是的，但是我不想因为简单的需求就引入整个React，增加了app 体积不说，门槛也相应提高了。
+&nbsp;&nbsp;JSONRenderKit 核心就只几个.h.m 文件，团队其他人只要按照文档写出JSON 就可以为app 输出，战斗力一下子就上来啦😁。重要的是我可以用它给用户很多意想不到的彩蛋，算是能让人兴奋的了！
+&nbsp;&nbsp;目前我已放进app -[掌上理工大](http://app.wutnews.net/#/) （app store 可以搜索）里面使用啦。代码有详细注释你也可以修改源代码并扩展新组件后放进的你自己的项目，重要的是你也可以参考JavaScript 是怎样和OC 进行交互的。要是有兴趣，你也可以自己将他打造成为一个有用的工具。
 
 ## 快速开始
 开始写一个JSON尝试一下吧！[JSON文档](https://github.com/cx478815108/JSONRenderKit/blob/master/Document.md)在这里。
