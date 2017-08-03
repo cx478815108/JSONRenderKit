@@ -14,7 +14,10 @@ typedef NS_OPTIONS(NSUInteger, UISeparatorDirection) {
     UISeparatorDirectionBottom       = 1 << 2,
     UISeparatorDirectionLeft         = 1 << 3,
     UISeparatorDirectionRight        = 1 << 4,
-    UISeparatorDirectionAll          = UISeparatorDirectionTop | UISeparatorDirectionBottom | UISeparatorDirectionLeft |UISeparatorDirectionRight
+    UISeparatorDirectionAll          = UISeparatorDirectionTop |
+                                       UISeparatorDirectionBottom |
+                                       UISeparatorDirectionLeft |
+                                       UISeparatorDirectionRight
 };
 
 @interface UIViewSeparator : NSObject
@@ -29,4 +32,5 @@ typedef void (^UIViewSeparatorBlock)(UIViewSeparator *ss_separator);
 
 @interface UIView (SSeparator)
 -(void)ss_setSeparator:(UIViewSeparatorBlock)separator;
+-(void)ss_setSeparatorWithDirection:(NSString *)direction color:(NSString *)color height:(NSString *)height;
 @end

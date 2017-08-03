@@ -7,6 +7,7 @@
 //
 
 #import "UIView+SSeparator.h"
+#import "UIColor+SSRender.h"
 #import <objc/runtime.h>
 
 @interface UIViewSeparator()
@@ -36,34 +37,46 @@
     CGFloat width  = CGRectGetWidth(self.associatedView.frame);
     CGFloat height = CGRectGetHeight(self.associatedView.frame);
     if (self.separatorDirection & UISeparatorDirectionTop) {
-        _topSeparatorView.hidden = NO;
-        CGFloat hWidth = width - self.separatorHInset.left - self.separatorHInset.right;
+        CGFloat hWidth                        = width - self.separatorHInset.left - self.separatorHInset.right;
+        _topSeparatorView.hidden              = NO;
         self.topSeparatorView.backgroundColor = self.separatorColor;
-        self.topSeparatorView.frame = CGRectMake(self.separatorHInset.left, self.separatorHInset.top, hWidth, self.separatorHeight);
+        self.topSeparatorView.frame           = CGRectMake(self.separatorHInset.left,
+                                                           self.separatorHInset.top,
+                                                           hWidth,
+                                                           self.separatorHeight);
         [self.associatedView bringSubviewToFront:self.topSeparatorView];
     }
     else{ _topSeparatorView.hidden = YES;}
     if (self.separatorDirection & UISeparatorDirectionBottom) {
-        _bottomSeparatorView.hidden = NO;
-        CGFloat hWidth = width - self.separatorHInset.left - self.separatorHInset.right;
-        self.bottomSeparatorView.backgroundColor=self.separatorColor;
-        self.bottomSeparatorView.frame=CGRectMake(self.separatorHInset.left, height - self.separatorHInset.bottom, hWidth, self.separatorHeight);
+        CGFloat hWidth                           = width - self.separatorHInset.left - self.separatorHInset.right;
+        _bottomSeparatorView.hidden              = NO;
+        self.bottomSeparatorView.backgroundColor = self.separatorColor;
+        self.bottomSeparatorView.frame           = CGRectMake(self.separatorHInset.left,
+                                                              height - self.separatorHInset.bottom,
+                                                              hWidth,
+                                                              self.separatorHeight);
         [self.associatedView bringSubviewToFront:self.bottomSeparatorView];
     }
     else{ _bottomSeparatorView.hidden = YES;}
     if (self.separatorDirection & UISeparatorDirectionLeft) {
-        _leftSeparatorView.hidden = NO;
-        CGFloat vHeight = height - self.separatorVInset.bottom - self.separatorVInset.top;
+        _leftSeparatorView.hidden              = NO;
+        CGFloat vHeight                        = height - self.separatorVInset.bottom - self.separatorVInset.top;
         self.leftSeparatorView.backgroundColor = self.separatorColor;
-        self.leftSeparatorView.frame = CGRectMake(self.separatorVInset.left, self.separatorVInset.top, self.separatorHeight, vHeight);
+        self.leftSeparatorView.frame           = CGRectMake(self.separatorVInset.left,
+                                                            self.separatorVInset.top,
+                                                            self.separatorHeight,
+                                                            vHeight);
         [self.associatedView bringSubviewToFront:self.leftSeparatorView];
     }
     else{ _leftSeparatorView.hidden = YES;}
     if (self.separatorDirection & UISeparatorDirectionRight) {
-        _rightSeparatorView.hidden = NO;
-        CGFloat vHeight = height - self.separatorVInset.bottom - self.separatorVInset.top;
+        _rightSeparatorView.hidden              = NO;
+        CGFloat vHeight                         = height - self.separatorVInset.bottom - self.separatorVInset.top;
         self.rightSeparatorView.backgroundColor = self.separatorColor;
-        self.rightSeparatorView.frame = CGRectMake(width-self.separatorVInset.right, self.separatorVInset.top, self.separatorHeight, vHeight);
+        self.rightSeparatorView.frame           = CGRectMake(width-self.separatorVInset.right,
+                                                             self.separatorVInset.top,
+                                                             self.separatorHeight,
+                                                             vHeight);
         [self.associatedView bringSubviewToFront:self.rightSeparatorView];
     }
     else{ _rightSeparatorView.hidden=YES;}
@@ -120,21 +133,15 @@
     
     Method oldMethod = class_getInstanceMethod(class, oldSelector);
     Method newMethod = class_getInstanceMethod(class, newSelector);
-    
-    BOOL success = class_addMethod(class, oldSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
-    if (success) {
-        class_replaceMethod(class, newSelector, method_getImplementation(oldMethod), method_getTypeEncoding(oldMethod));
-    } else {
-        method_exchangeImplementations(oldMethod, newMethod);
-    }
+    BOOL success     = class_addMethod(class, oldSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
+    if (success) { class_replaceMethod(class, newSelector, method_getImplementation(oldMethod), method_getTypeEncoding(oldMethod));}
+    else { method_exchangeImplementations(oldMethod, newMethod);}
 }
 
 +(void)load
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      [self swizzleOldSelector:@selector(layoutSubviews) newSelector:@selector(ss_layoutSubviews)];
-    });
+    dispatch_once(&onceToken, ^{ [self swizzleOldSelector:@selector(layoutSubviews) newSelector:@selector(ss_layoutSubviews)];});
 }
 
 -(void)ss_layoutSubviews
@@ -143,17 +150,44 @@
     if (self.ss_separator) {[self.ss_separator updateSeparatorView];}
 }
 
+
+#pragma mark - setter
 -(void)ss_setSeparator:(UIViewSeparatorBlock)separator
 {
-    if (self.ss_separator==nil) {
-        self.ss_separator=[[UIViewSeparator alloc] init];
-    }
-    if (self.ss_separator.associatedView==nil) {
-        self.ss_separator.associatedView=self;
-    }
+    if (self.ss_separator==nil)                { self.ss_separator = [[UIViewSeparator alloc] init];}
+    if (self.ss_separator.associatedView==nil) { self.ss_separator.associatedView = self;}
     separator(self.ss_separator);
     [self.ss_separator updateSeparatorView];
 }
+
+-(void)ss_setSeparatorWithDirection:(NSString *)direction color:(NSString *)color height:(NSString *)height
+{
+    if (direction) {
+        UISeparatorDirection sd = UISeparatorDirectionNone;
+        if ([direction isEqualToString:@"none"]) {
+            [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorDirection = sd;}];
+        }
+        else if ([direction isEqualToString:@"all"]){
+            [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorDirection = UISeparatorDirectionAll;}];
+        }
+        else{
+            if ([direction containsString:@"left"])   { sd = sd | UISeparatorDirectionLeft;}
+            if ([direction containsString:@"right"])  { sd = sd | UISeparatorDirectionRight;}
+            if ([direction containsString:@"top"])    { sd = sd | UISeparatorDirectionTop;}
+            if ([direction containsString:@"bottom"]) { sd = sd | UISeparatorDirectionBottom;}
+        }
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorDirection=sd;}];
+    }
+    
+    if (color) {
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorColor=[UIColor ss_colorWithString:color];}];
+    }
+    
+    if (height) {
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorHeight=[height floatValue];}];
+    }
+}
+
 #pragma mark - getter
 
 -(UIViewSeparator *)ss_separator
