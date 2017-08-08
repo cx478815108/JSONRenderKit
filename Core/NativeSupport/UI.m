@@ -22,9 +22,9 @@
                                                                    message:msg?msg:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
     @weakify(alert)
-    UIAlertAction *action=[UIAlertAction actionWithTitle:@"确定"
-                                                   style:UIAlertActionStyleDefault
-                                                 handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
         @strongify(alert)
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -36,13 +36,13 @@
 {
     SSBaseRenderController *renderController = [SSBaseRenderController currentController];
     if ([style isEqualToString:@"whitelarge"]) {
-        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhiteLarge;
+        renderController.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     }
     else if ([style isEqualToString:@"white"]) {
-        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhite;
+        renderController.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     }
     else if ([style isEqualToString:@"gray"]){
-        renderController.indicatorView.activityIndicatorViewStyle=UIActivityIndicatorViewStyleGray;
+        renderController.indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     }
     [renderController showIndicator];
 }

@@ -37,7 +37,6 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
     return obj;
 }
 
-
 -(void)postEndEditingNotification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:SSEndEditingNotification object:nil];
@@ -159,7 +158,7 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
         NSDictionary *aligns = @{@"left":   @(NSTextAlignmentLeft),
                                  @"right":  @(NSTextAlignmentRight),
                                  @"center": @(NSTextAlignmentCenter)};
-        if ([aligns.allKeys containsObject:align]) { self.textAlignment=[aligns[align] integerValue];}
+        if ([aligns.allKeys containsObject:align]) { self.textAlignment = [aligns[align] integerValue];}
     }
 }
 @end
@@ -278,7 +277,8 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endEditing) name:SSEndEditingNotification object:nil];
 }
 
--(void)endEditing{
+-(void)endEditing
+{
     [self endEditing];
 }
 
@@ -287,7 +287,8 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void)handeleWithNotification:(NSNotification *)notification{
+-(void)handeleWithNotification:(NSNotification *)notification
+{
     UITextView *textView = notification.object;
     if (![self isEqual:textView]) return;
     //save the text value to the relevant JS Object 

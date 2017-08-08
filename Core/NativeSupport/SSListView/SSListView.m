@@ -34,18 +34,20 @@
     return self;
 }
 
--(void)layoutSubviews{
+-(void)layoutSubviews
+{
     [super layoutSubviews];
-    self.collectionView.frame=self.bounds;
+    self.collectionView.frame = self.bounds;
 }
 
--(void)js_setTemplateComponents:(NSArray *)templateComponents{
-    self.templateComponents=templateComponents;
+-(void)js_setTemplateComponents:(NSArray *)templateComponents
+{
+    self.templateComponents = templateComponents;
 }
 
 -(void)js_setDataArrays:(NSArray<NSDictionary *> *)array{
     if (array && [array isKindOfClass:[NSArray class]]) {
-        self.dataArray=[NSArray arrayWithArray:array];
+        self.dataArray = [NSArray arrayWithArray:array];
     }
 }
 
@@ -54,42 +56,31 @@
     if (array && [array isKindOfClass:[NSArray class]]) {
         NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.dataArray];
         [tempArray addObjectsFromArray:array];
-        self.dataArray=[NSArray arrayWithArray:tempArray];
+        self.dataArray = [NSArray arrayWithArray:tempArray];
     }
 }
 
--(void)js_reloadData{
+-(void)js_reloadData
+{
     [self.collectionView reloadData];
 }
 
--(void)js_setStyle:(NSDictionary *)style{
+-(void)js_setStyle:(NSDictionary *)style
+{
     [super js_setStyle:style];
-    self.style=style;
-    if (style[@"showHBar"]){
-        self.collectionView.showsHorizontalScrollIndicator=[style[@"showHBar"] boolValue];
-    }
-    if (style[@"showVBar"]) {
-        self.collectionView.showsVerticalScrollIndicator=[style[@"showVBar"] boolValue];
-    }
-    if (style[@"splitPage"]) {
-        self.collectionView.pagingEnabled=[style[@"splitPage"] boolValue];
-    }
-    if (style[@"allowScroll"]) {
-        self.collectionView.scrollEnabled=[style[@"allowScroll"] boolValue];
-    }
-    if (style[@"itemSize"]) {
-        self.layout.itemSize=CGSizeFromString(style[@"itemSize"]);
-    }
-    if (style[@"itemHMarign"]) {
-        self.layout.minimumInteritemSpacing=[style[@"itemHMarign"] floatValue];
-    }
-    if (style[@"itemVMarign"]) {
-        self.layout.minimumLineSpacing=[style[@"itemVMarign"] floatValue];
-    }
+    self.style = style;
+    if (style[@"showHBar"])    { self.collectionView.showsHorizontalScrollIndicator = [style[@"showHBar"] boolValue];}
+    if (style[@"showVBar"])    { self.collectionView.showsVerticalScrollIndicator = [style[@"showVBar"] boolValue];}
+    if (style[@"splitPage"])   { self.collectionView.pagingEnabled = [style[@"splitPage"] boolValue];}
+    if (style[@"allowScroll"]) { self.collectionView.scrollEnabled = [style[@"allowScroll"] boolValue];}
+    if (style[@"itemSize"])    { self.layout.itemSize = CGSizeFromString(style[@"itemSize"]);}
+    if (style[@"itemHMarign"]) { self.layout.minimumInteritemSpacing = [style[@"itemHMarign"] floatValue];}
+    if (style[@"itemVMarign"]) { self.layout.minimumLineSpacing = [style[@"itemVMarign"] floatValue];}
     NSString *direction = style[@"scrollDirection"];
     if (direction) {
-        NSDictionary *directions=@{@"vetical":@(UICollectionViewScrollDirectionVertical),@"horizontal":@(UICollectionViewScrollDirectionHorizontal)};
-        self.layout.scrollDirection=[directions[direction] integerValue];
+        NSDictionary *directions = @{@"vetical":@(UICollectionViewScrollDirectionVertical),
+                                   @"horizontal":@(UICollectionViewScrollDirectionHorizontal)};
+        self.layout.scrollDirection = [directions[direction] integerValue];
     }
 }
 
@@ -134,9 +125,9 @@
 {
     NSString *itemHighlightColor = self.itemStyle[@"itemHighlightColor"];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    _cachedColor=cell.backgroundColor?:[UIColor whiteColor];
+    _cachedColor = cell.backgroundColor?:[UIColor whiteColor];
     if (itemHighlightColor) {
-        cell.backgroundColor=[UIColor ss_colorWithString:itemHighlightColor];
+        cell.backgroundColor = [UIColor ss_colorWithString:itemHighlightColor];
     }
 }
 
@@ -166,7 +157,7 @@
     [self.collectionView performBatchUpdates:^{
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataArray];
         [array removeObjectAtIndex:realIndex];
-        self.dataArray=array;
+        self.dataArray = array;
         [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:realIndex inSection:0]]];
     } completion:nil];
 }
@@ -185,7 +176,7 @@
     [self.collectionView performBatchUpdates:^{
         NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataArray];
         [array insertObject:item atIndex:realIndex];
-        self.dataArray=array;
+        self.dataArray = array;
         [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:realIndex]]];
     } completion:nil];
 }
@@ -196,11 +187,11 @@
     if (_collectionView==nil) {
         self.layout=[[UICollectionViewFlowLayout alloc] init];
         _collectionView=[[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
-        _collectionView.delegate   = self;
-        _collectionView.dataSource = self;
+        _collectionView.delegate            = self;
+        _collectionView.dataSource          = self;
+        _collectionView.backgroundColor     = [UIColor clearColor];
+        _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         [_collectionView registerClass:[SSListViewCell class] forCellWithReuseIdentifier:[SSListViewCell reuseIdentify]];
-        _collectionView.backgroundColor=[UIColor clearColor];
-        _collectionView.keyboardDismissMode=UIScrollViewKeyboardDismissModeOnDrag;
     }
     return _collectionView;
 }

@@ -27,10 +27,10 @@
 -(void)configWithSubviewDicArray:(NSArray *)array
 {
     if (self.subViewConfiged) return;
-    self.subViewConfiged=YES;
-    if (self.ss_viewStore==nil) {self.ss_viewStore=@{}.mutableCopy;}
+    self.subViewConfiged = YES;
+    if (self.ss_viewStore == nil) {self.ss_viewStore=@{}.mutableCopy;}
     [array enumerateObjectsUsingBlock:^(NSDictionary  *_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *view=[UIView ss_viewWithComponentDic:obj];
+        UIView *view = [UIView ss_viewWithComponentDic:obj];
         [self.contentView addSubview:view];
         [self.ss_viewStore setObject:view forKey:view.ss_identify];
     }];
@@ -46,7 +46,7 @@
 -(void)js_setStyle:(NSDictionary *)style
 {
     [super js_setStyle:style];
-    NSArray *subStyles= style[@"subStyles"];
+    NSArray *subStyles = style[@"subStyles"];
     if (subStyles && subStyles.count) {
         [self js_setSubStyles:subStyles];
     }

@@ -104,7 +104,7 @@ SSJSContext *_currentContext=nil;
     //to define a function which JS can use to send the Internet request
     //JSValue *success is a parameter which is the arrow function,when passed form the JS,it can be used through callWithArguments,and if the success parameter is a JS object you can use invokeMethod:withArguments to run the relevant function
     self[@"oc_urlRequest"] = ^void(NSString *url,NSString *type,JSValue *parameters,JSValue *success,JSValue *failure){
-        NSDictionary *ocParameters=[parameters isUndefined]?nil:[parameters toDictionary];
+        NSDictionary *ocParameters = [parameters isUndefined]?nil:[parameters toDictionary];
         if ([type isEqualToString:@"GET"]) {
             [Spider getWithURLString:url parameters:ocParameters success:^(id responseObject) {
                 [success callWithArguments:@[responseObject]];

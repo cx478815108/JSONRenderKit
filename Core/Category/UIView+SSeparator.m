@@ -101,11 +101,10 @@
     return _bottomSeparatorView;
 }
 
-
 -(UIView *)leftSeparatorView
 {
     if (_leftSeparatorView==nil) {
-        _leftSeparatorView=[[UIView alloc] init];
+        _leftSeparatorView = [[UIView alloc] init];
         [self.associatedView addSubview:_leftSeparatorView];
     }
     return _leftSeparatorView;
@@ -114,13 +113,12 @@
 -(UIView *)rightSeparatorView
 {
     if (_rightSeparatorView==nil) {
-        _rightSeparatorView=[[UIView alloc] init];
+        _rightSeparatorView = [[UIView alloc] init];
         [self.associatedView addSubview:_rightSeparatorView];
     }
     return _rightSeparatorView;
 }
 @end
-
 
 @interface UIView()
 @property(nonatomic ,strong) UIViewSeparator *ss_separator;
@@ -129,19 +127,25 @@
 @implementation UIView (SSeparator)
 
 + (void)swizzleOldSelector:(SEL)oldSelector newSelector:(SEL)newSelector{
-    Class class = [self class];
-    
+    Class class      = [self class];
     Method oldMethod = class_getInstanceMethod(class, oldSelector);
     Method newMethod = class_getInstanceMethod(class, newSelector);
-    BOOL success     = class_addMethod(class, oldSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
-    if (success) { class_replaceMethod(class, newSelector, method_getImplementation(oldMethod), method_getTypeEncoding(oldMethod));}
+    BOOL success     = class_addMethod(class, oldSelector,
+                                       method_getImplementation(newMethod),
+                                       method_getTypeEncoding(newMethod));
+    
+    if (success) { class_replaceMethod(class,
+                                       newSelector,
+                                       method_getImplementation(oldMethod),
+                                       method_getTypeEncoding(oldMethod));}
     else { method_exchangeImplementations(oldMethod, newMethod);}
 }
 
 +(void)load
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ [self swizzleOldSelector:@selector(layoutSubviews) newSelector:@selector(ss_layoutSubviews)];});
+    dispatch_once(&onceToken, ^{ [self swizzleOldSelector:@selector(layoutSubviews)
+                                              newSelector:@selector(ss_layoutSubviews)];});
 }
 
 -(void)ss_layoutSubviews
@@ -180,18 +184,17 @@
     }
     
     if (color) {
-        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorColor=[UIColor ss_colorWithString:color];}];
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorColor = [UIColor ss_colorWithString:color];}];
     }
     
     if (height) {
-        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorHeight=[height floatValue];}];
+        [self ss_setSeparator:^(UIViewSeparator *ss_separator) { ss_separator.separatorHeight = [height floatValue];}];
     }
 }
 
 #pragma mark - getter
 
 -(UIViewSeparator *)ss_separator
-
 {
     UIViewSeparator *obj = objc_getAssociatedObject(self, _cmd);
     return obj;
