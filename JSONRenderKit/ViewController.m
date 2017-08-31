@@ -25,35 +25,7 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.tableView.tableFooterView=[UIView new];
-    
-    NSArray *array = [self stringTokenizerWithWord:@"明天我们可以买一本新书"];
-    for (NSString *str in array) {
-        NSLog(@"%@",str);
-    }
 }
-
-
--(NSArray *)stringTokenizerWithWord:(NSString *)word{
-    NSMutableArray *keyWords=[NSMutableArray new];
-    
-    CFStringTokenizerRef ref=CFStringTokenizerCreate(NULL,  (__bridge CFStringRef)word, CFRangeMake(0, word.length),kCFStringTokenizerUnitWord,NULL);
-    CFRange range;
-    CFStringTokenizerAdvanceToNextToken(ref);
-    range=CFStringTokenizerGetCurrentTokenRange(ref);
-    NSString *keyWord;
-    
-    
-    while (range.length>0)
-    {
-        keyWord=[word substringWithRange:NSMakeRange(range.location, range.length)];
-        [keyWords addObject:keyWord];
-        CFStringTokenizerAdvanceToNextToken(ref);
-        range=CFStringTokenizerGetCurrentTokenRange(ref);
-    }
-    return keyWords;
-}
-
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -66,6 +38,9 @@
     }
     else if (indexPath.row==2) {
         obj.url=@"http://127.0.0.1:5000/trans";
+    }
+    else if (indexPath.row==3) {
+        obj.url=@"http://127.0.0.1:5000/newApi";
     }
     [self.navigationController pushViewController:obj animated:YES];
 }
