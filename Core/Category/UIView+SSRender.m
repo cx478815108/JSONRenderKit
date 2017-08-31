@@ -13,8 +13,9 @@
 #import "UIView+SSeparator.h"
 
 #import <objc/runtime.h>
-#import <UIButton+WebCache.h>
-#import <UIImageView+WebCache.h>
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import <UIView+WebCache.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
@@ -86,6 +87,7 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
 #pragma mark - setStyle
 -(void)js_setStyle:(NSDictionary *)style
 {
+    NSAssert([style isKindOfClass:[NSDictionary class]], @"js_setStyle: the style is not a NSDictionary");
     
     if(style[@"cornerRadius"])    { self.layer.cornerRadius = [style[@"cornerRadius"] floatValue];}
     if(style[@"borderWidth"])     { self.layer.borderWidth  = [style[@"borderWidth"] floatValue];}
@@ -135,6 +137,10 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
                         forState:(UIControlStateNormal)
                        completed:nil];
     }
+    NSNumber *sizeToFit = style[@"sizeToFit"];
+    if (sizeToFit)           {
+        if([sizeToFit boolValue]) { [self sizeToFit];}
+    }
 }
 
 -(void)js_didPressedButton
@@ -159,6 +165,10 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
                                  @"right":  @(NSTextAlignmentRight),
                                  @"center": @(NSTextAlignmentCenter)};
         if ([aligns.allKeys containsObject:align]) { self.textAlignment = [aligns[align] integerValue];}
+    }
+    NSNumber *sizeToFit = style[@"sizeToFit"];
+    if (sizeToFit)           {
+        if([sizeToFit boolValue]) { [self sizeToFit];}
     }
 }
 @end
@@ -188,7 +198,11 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
         if ([modes.allKeys containsObject:mode]) { self.contentMode=[modes[mode] integerValue];}
     }
     NSString *image=style[@"image"];
-    if (image){ [self sd_setImageWithURL:[NSURL URLWithString:image] completed:nil];}
+    if (image){
+        [self sd_setImageWithURL:[NSURL URLWithString:image] completed:nil];
+        [self sd_setShowActivityIndicatorView:YES];
+        [self sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
 }
 @end
 
