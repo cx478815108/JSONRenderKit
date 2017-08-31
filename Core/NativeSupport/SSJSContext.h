@@ -42,4 +42,13 @@
  @return view
  */
 -(UIView *)renderWithJSON:(NSDictionary *)json;
+
+
+/**
+ you can add a NSObject that conform the JSExport
+ example : [context addJSPlugin:[[UI alloc] init] name:@"UI"];
+ then you can use UI.screenW in the json
+ @param plugin custom object
+ */
+-(void)addJSPlugin:(NSObject *)plugin name:(NSString *)name;
 @end

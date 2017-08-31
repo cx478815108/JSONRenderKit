@@ -15,6 +15,7 @@
 SSJSContext *_currentContext=nil;
 
 @interface SSJSContext()
+@property(nonatomic ,strong) NSMutableDictionary *plugins;
 @end
 
 @implementation SSJSContext
@@ -121,9 +122,7 @@ SSJSContext *_currentContext=nil;
         }
     };
     
-    //给JS注入UI这个对象，把UI类定义通过JSExport 输出给JS作为一个对象
-    //inject the UI objetc to JS used the JSExport
-    self[@"UI"] = [[UI alloc] init];
+    [self addInternalPlugs];
     @weakify(self);
     self[@"oc_renderFinish"] = ^(){
         @strongify(self);
@@ -147,6 +146,20 @@ SSJSContext *_currentContext=nil;
     [self evaluateScript:sskit withSourceURL:kitURL];
 }
 
+-(void)addInternalPlugs{
+    //给JS注入UI这个对象，把UI类定义通过JSExport 输出给JS作为一个对象
+    //inject the UI objetc to JS used the JSExport
+    UI *uiPlugin = [[UI alloc] init];
+    [self addJSPlugin:uiPlugin name:@"UI"];
+}
+
+-(void)addJSPlugin:(NSObject *)plugin name:(NSString *)name{
+    if ([plugin conformsToProtocol:@protocol(JSExport)]) {
+        [self.plugins setObject:plugin forKey:name];
+        self[name] = plugin;
+    }
+}
+
 -(UIView *)renderWithJSON:(NSDictionary *)json
 {
     //准备一个容器视图
@@ -160,6 +173,13 @@ SSJSContext *_currentContext=nil;
 }
 
 -(void)renderFinish{}
+
+-(NSMutableDictionary *)plugins{
+    if (_plugins == nil) {
+        _plugins =@{}.mutableCopy;
+    }
+    return _plugins;
+}
 
 -(void)dealloc
 {
