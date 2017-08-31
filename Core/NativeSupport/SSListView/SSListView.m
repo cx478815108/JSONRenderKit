@@ -63,6 +63,11 @@
 -(void)js_reloadData
 {
     [self.collectionView reloadData];
+    if ([self allowInfiniteScroll]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2499 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        });
+    }
 }
 
 -(void)js_setStyle:(NSDictionary *)style
@@ -94,18 +99,23 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if ([self allowInfiniteScroll]) { return 5000;}
     return self.dataArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SSListViewCell *listViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:[SSListViewCell reuseIdentify] forIndexPath:indexPath];
-    listViewCell.tag=indexPath.item;
+    
+    NSInteger realIndex =  [self allowInfiniteScroll]?(indexPath.item%self.dataArray.count):indexPath.item;
+    
+    listViewCell.tag = realIndex;
     //只会配置一次
     [listViewCell configWithSubviewDicArray:self.templateComponents];
-    [listViewCell configItemStyle:self.itemStyle];
+    if (self.itemStyle) { [listViewCell configItemStyle:self.itemStyle];}
+    
     //设置style
-    NSDictionary *style = self.dataArray[indexPath.item];
+    NSDictionary *style = self.dataArray[realIndex];
     if (style && [style isKindOfClass:[NSDictionary class]]) {
         [listViewCell js_setStyle:style];
     }
@@ -139,7 +149,8 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.jsValue invokeMethod:@"didSelectItemAtIndex" withArguments:@[@(indexPath.item)]];
+    NSInteger realIndex =  [self allowInfiniteScroll]?(indexPath.item%self.dataArray.count):indexPath.item;
+    [self.jsValue invokeMethod:@"didSelectItemAtIndex" withArguments:@[@(realIndex)]];
     [self postEndEditingNotification];
     [self collectionView:collectionView didHighlightItemAtIndexPath:indexPath];
 }
@@ -181,7 +192,31 @@
     } completion:nil];
 }
 
+-(void)js_goNextPage{
+    if (self.layout.itemSize.width != self.collectionView.frame.size.width) return;
+    NSInteger currentPage = self.collectionView.contentOffset.x / self.collectionView.frame.size.width;
+    if (currentPage<[self collectionView:self.collectionView numberOfItemsInSection:0]-1) {
+        currentPage += 1;
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:currentPage inSection:0] atScrollPosition:(UICollectionViewScrollPositionCenteredHorizontally) animated:YES];
+    }
+}
+
+-(void)js_goPreviousPage{
+    if (self.layout.itemSize.width != self.collectionView.frame.size.width) return;
+    NSInteger currentPage = self.collectionView.contentOffset.x / self.collectionView.frame.size.width;
+    if (currentPage>0) {
+        currentPage -= 1;
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:currentPage inSection:0] atScrollPosition:(UICollectionViewScrollPositionCenteredHorizontally) animated:YES];
+    }
+}
+
 #pragma mark - getter
+-(BOOL)allowInfiniteScroll
+{
+    NSNumber *number = [self.style objectForKey:@"infiniteScroll"];
+    return (number && [number boolValue]);
+}
+
 -(UICollectionView *)collectionView
 {
     if (_collectionView==nil) {
@@ -195,5 +230,4 @@
     }
     return _collectionView;
 }
-
 @end

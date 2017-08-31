@@ -15,10 +15,48 @@
 
 -(void)js_setDataArrays:(NSArray <NSDictionary *>*)array;
 -(void)js_addDataWithArray:(NSArray <NSDictionary *>*)array;
+
+/**
+ the collectionViewCell will config the subViews according to the templateComponents
+ 
+ @param templateComponents the subStylesArray
+ */
 -(void)js_setTemplateComponents:(NSArray *)templateComponents;
+
+/**
+ reload the data
+ */
 -(void)js_reloadData;
 
+/**
+ go to the next collectionViewCell
+ */
+-(void)js_goNextPage;
+
+/**
+ go to the previous collectionViewCell
+ */
+-(void)js_goPreviousPage;
+
+/**
+ delete a item according a index string
+ 
+ @param index a index which type is String
+ */
 -(void)deleteItemAtIndexString:(NSString *)index;
+
+/**
+ add a item to the index place
+ 
+ @param item style
+ @param index a index which type is String
+ */
 -(void)addItem:(NSDictionary *)item atIndexString:(NSString *)index;
+
+/**
+ add data and item to the trail
+ 
+ @param item style
+ */
 -(void)addItemToTrail:(NSDictionary *)item;
 @end
