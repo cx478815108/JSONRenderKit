@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B2DF7921AD3C39ED897A659 /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D46B3D4B938FA2BC99E5D74 /* libPods-JSONRenderKit.a */; };
+		5AA46323991637BF4F95B26C /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */; };
 		9B3D83601F2DAE8100EE5020 /* Service.py in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D835F1F2DAE8100EE5020 /* Service.py */; };
 		9BB2A7491F20E639007A9432 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2A7481F20E639007A9432 /* SSTool.js */; };
 		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
@@ -31,7 +31,7 @@
 
 /* Begin PBXFileReference section */
 		3BF6C0FD178E435B59C5F64B /* Pods-JSONRenderKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONRenderKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONRenderKit/Pods-JSONRenderKit.release.xcconfig"; sourceTree = "<group>"; };
-		4D46B3D4B938FA2BC99E5D74 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3D835F1F2DAE8100EE5020 /* Service.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Service.py; sourceTree = "<group>"; };
 		9BB2A7481F20E639007A9432 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
 		9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSeparator.h"; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B2DF7921AD3C39ED897A659 /* libPods-JSONRenderKit.a in Frameworks */,
+				5AA46323991637BF4F95B26C /* libPods-JSONRenderKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +199,7 @@
 		BC47EBE06AFB448189A1E82B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4D46B3D4B938FA2BC99E5D74 /* libPods-JSONRenderKit.a */,
+				60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -284,13 +284,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JSONRenderKit-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7FDD94D0B36DBCDE869C4B98 /* [CP] Embed Pods Frameworks */ = {
@@ -299,9 +302,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-JSONRenderKit/Pods-JSONRenderKit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/YogaKit/YogaKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YogaKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
