@@ -382,6 +382,160 @@ todo={
     }
 }
 
+
+newApi = {
+    "controller":{
+        "title":"swipe the banner",
+    },
+    "components":[
+        {
+            "id":"imageLists",
+            "type":"ListView",
+            "style":{
+                "position":"`{{0,0},{${UI.screenW},${220}}}`",
+                "itemSize":"`{${UI.screenW},220}`",
+                "itemHMarign":0,
+                "itemVMarign":0,
+                "scrollDirection":"horizontal",
+                "backgroundColor":"rgb(255,255,255)",
+                "splitPage":1,
+                "infiniteScroll":1,
+                "showHBar":0
+            },
+            "clickItem":"${(index)=>{UI.log(index)}}",
+            "item":[
+                {
+                    "id":"image",
+                    "type":"ImageView",
+                    "style":{
+                        "position":"`{{0,0},{${UI.screenW},220}}`",
+                    }
+                },
+            ],
+            "dataArray":[
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"image",
+                            "style":{
+                                "image":"`https://unsplash.it/${UI.screenW*2}/440/?image=210`",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"image",
+                            "style":{
+                                "image":"`https://unsplash.it/${UI.screenW*2}/440/?image=211`",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"image",
+                            "style":{
+                                "image":"`https://unsplash.it/${UI.screenW*2}/440/?image=223`",
+                            },
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            "id":"UIToolLists",
+            "type":"ListView",
+            "style":{
+                "position":"`{{0,220},{${UI.screenW},${UI.screenH-220-64}}}`",
+                "itemSize":"`{${UI.screenW},50}`",
+                "itemVMarign":0,
+                "scrollDirection":"vertical",
+                "backgroundColor":"rgb(255,255,255)",
+            },
+            "clickItem":"${(index)=>{$props.runFuncs(index)}}",
+            "itemStyle":{
+                "separatorDirection":"bottom",
+                "separatorColor":"rgb(220,220,220)",
+            },
+            "item":[
+                {
+                    "id":"toolLabel",
+                    "type":"Label",
+                    "style":{
+                        "position":"`{{14,8},{${UI.screenW-14},40}}`",
+                        "fontSize":18,
+                        "textColor":"rgb(20,20,20)",
+                    }
+                },
+            ],
+            "dataArray":[
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"toolLabel",
+                            "style":{
+                                "text":"showActionSheet",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"toolLabel",
+                            "style":{
+                                "text":"showActionAlert",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"toolLabel",
+                            "style":{
+                                "text":"alertDeviceScreenSize",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"toolLabel",
+                            "style":{
+                                "text":"showIndicator",
+                            },
+                        },
+                    ]
+                },
+                {
+                    "subStyles":[
+                        {
+                            "viewId":"toolLabel",
+                            "style":{
+                                "text":"hideIndicatorDelay",
+                            },
+                        },
+                    ]
+                },
+            ]
+        },
+    ],
+    "props":{
+        "$runFunctions":[
+            "${()=>{UI.showSheetView('sheetView标题','点击非标题列表按钮，index=-1',['apple','orange','litchi'],(index)=>{UI.log('你点击了'+index)});}}",
+            "${()=>{UI.alertTitles('alert标题','点击非标题列表按钮，index=-1',['banana','grape'],(index)=>{UI.log('你点击了'+index)});}}",
+            "${()=>{let info = `设备宽：${UI.screenW} \n 设备高：${UI.screenH}`;UI.alert('设备屏幕详情',info);}}",
+            "${()=>{UI.showIndicator();}}",
+            "${()=>{UI.hideIndicatorDelay(0);}}"
+        ]
+    }
+}
+
 @app.route('/')
 def hello_world():
     return 'JSON render Hello World!'
@@ -397,6 +551,10 @@ def get_translation():
 @app.route('/todo', methods=['GET'])
 def get_todo():
     return jsonify(todo)
+
+@app.route('/newApi', methods=['GET'])
+def get_newApi():
+    return jsonify(newApi)
 
 if __name__ == '__main__':
     app.run()

@@ -216,7 +216,7 @@ class ListView extends View {
         this.clickItem = json.clickItem;
         this.itemStyle = json.itemStyle;
         this.invokeNative('js_setTemplateComponents:',json.item);
-        this.invokeNative('setItemStyle:',this.itemStyle);
+        if (this.itemStyle) {this.invokeNative('setItemStyle:',this.itemStyle);}
         if(json.dataArray){
             this.setDataArray(json.dataArray);
             this.reloadData();
@@ -263,6 +263,14 @@ class ListView extends View {
             this.dataArray = state.value;
             this.reloadData();
         }
+    }
+
+    goNextPage(){
+        this.invokeNative('js_goNextPage');
+    }
+
+    goPreviousPage(){
+        this.invokeNative('js_goPreviousPage');
     }
 
     didCreatNative(){
@@ -343,6 +351,14 @@ class AppProps{
 
     getCopy(valueKey){
         return keyValuesClone(this[valueKey]);
+    }
+
+    runFuncs(index,...args){
+        let funcs = this['$runFunctions'];
+        if(isArray(funcs)){
+            let funcString = funcs[index];
+            funcString.runWithArgs(...args);
+        }
     }
 }
 
