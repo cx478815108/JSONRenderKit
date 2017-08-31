@@ -14,8 +14,10 @@
 
 JSExportAs(log, -(void)log:(NSString *)msg);
 JSExportAs(alert, -(void)alertWithTitle:(NSString *)title msg:(NSString *)msg);
+JSExportAs(alertTitles, -(void)alertWithTitle:(NSString *)title msg:(NSString *)msg actionTitles:(NSArray *)actionTitles callBack:(JSValue *)callBack);
 JSExportAs(showIndicator, -(void)showIndicatorWithStyle:(NSString *)style);
 JSExportAs(hideIndicatorDelay, -(void)hideIndicatorDelay:(NSInteger)delay);
+JSExportAs(showSheetView, -(void)showSheetViewWithTitle:(NSString *)title msg:(NSString *)msg actionTitles:(NSArray *)actionTitles callBack:(JSValue *)callBack);
 
 @property(nonatomic, assign, readonly) CGFloat  screenW;
 @property(nonatomic, assign, readonly) CGFloat  screenH;

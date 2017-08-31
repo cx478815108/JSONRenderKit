@@ -9,12 +9,64 @@
 #import "UI.h"
 #import "CXMacros.h"
 #import "SSBaseRenderController.h"
+
+@interface UI()
+@end
+
 @implementation UI
 
--(void)log:(NSString *)msg
+#pragma mark - show UI infos
+
+-(void)alertWithTitle:(NSString *)title
+                  msg:(NSString *)msg
+         actionTitles:(NSArray *)actionTitles
+             callBack:(JSValue *)callBack
 {
-    NSLog(@"%@",msg);
+    [self showAlertControllerWithStyle:(UIAlertControllerStyleAlert)
+                                 title:title
+                                   msg:msg
+                          actionTitles:actionTitles
+                              callBack:callBack cancleButton:YES];
+    
 }
+
+-(void)showSheetViewWithTitle:(NSString *)title
+                          msg:(NSString *)msg
+                 actionTitles:(NSArray *)actionTitles
+                     callBack:(JSValue *)callBack
+{
+    [self showAlertControllerWithStyle:(UIAlertControllerStyleActionSheet)
+                                 title:title
+                                   msg:msg
+                          actionTitles:actionTitles
+                              callBack:callBack cancleButton:YES];
+}
+
+-(void)showAlertControllerWithStyle:(UIAlertControllerStyle)style title:(NSString *)title
+                                msg:(NSString *)msg
+                       actionTitles:(NSArray *)actionTitles
+                           callBack:(JSValue *)callBack cancleButton:(BOOL)cancleButton
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:style];
+    
+    for (NSString *title in actionTitles) {
+        [alertController addAction:[UIAlertAction actionWithTitle:title style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            if (![callBack isUndefined]) {
+                NSInteger index = [actionTitles indexOfObject:action.title];
+                [callBack callWithArguments:@[@(index)]];
+            }
+        }]];
+    }
+    if (cancleButton) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+            if (![callBack isUndefined]) {
+                [callBack callWithArguments:@[@(-1)]];
+            }
+        }]];
+    }
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+}
+
 
 -(void)alertWithTitle:(NSString *)title msg:(NSString *)msg
 {
@@ -55,6 +107,12 @@
     });
 }
 
+-(void)log:(NSString *)msg
+{
+    NSLog(@"%@",msg);
+}
+
+#pragma mark - device status
 -(CGFloat)screenW
 {
     return kScreenWidth;
@@ -64,6 +122,8 @@
 {
     return kScreenHeight;
 }
+
+#pragma mark - rgb colors
 
 -(NSString *)themeColor{
     return @"rgb(69, 200, 220)";
