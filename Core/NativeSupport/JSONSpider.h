@@ -12,7 +12,7 @@ typedef void(^SpiderNetSuccessBlock)(id responseObject);
 typedef void(^SpiderNetFailureBlock)(NSError *netError);
 
 
-@interface Spider : NSObject
+@interface JSONSpider : NSObject
 
 
 /**

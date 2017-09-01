@@ -6,10 +6,10 @@
 //  Copyright © 2016年 com.feelings. All rights reserved.
 //
 
-#import "Spider.h"
+#import "JSONSpider.h"
 #import "AFNetworking.h"
 
-@implementation Spider
+@implementation JSONSpider
 
 static AFHTTPSessionManager *_manager = nil;
 
