@@ -1,9 +1,8 @@
 //
 //  UI.m
-//  SSRenderKit
-//
-//  Created by 陈雄 on 2017/6/19.
-//  Copyright © 2017年 com.feelings. All rights reserved.
+//  JSONRenderKit
+//  Created by 陈雄 on 16/4/4.
+//  Copyright © 2016年 com.feelings. All rights reserved.
 //
 
 #import "UI.h"

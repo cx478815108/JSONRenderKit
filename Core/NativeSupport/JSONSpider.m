@@ -1,7 +1,6 @@
 //
-//  Spider.m
-//  MyWHUT
-//
+//  JSONSpider.m
+//  JSONRenderKit
 //  Created by 陈雄 on 16/4/4.
 //  Copyright © 2016年 com.feelings. All rights reserved.
 //

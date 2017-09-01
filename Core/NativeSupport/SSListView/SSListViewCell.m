@@ -1,6 +1,6 @@
 //
 //  SSConfigCell.m
-//  SSRenderKit
+//  JSONRenderKit
 //
 //  Created by 陈雄 on 2017/6/22.
 //  Copyright © 2017年 com.feelings. All rights reserved.

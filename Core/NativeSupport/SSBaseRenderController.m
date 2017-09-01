@@ -8,8 +8,8 @@
 
 #import "SSBaseRenderController.h"
 #import "SSJSContext.h"
-#import "JSONSpider.h"
 #import "UIColor+SSRender.h"
+#import "JSONSpider.h"
 #import "CXMacros.h"
 
 NSString *const SSViewDidAppearNotification     = @"ViewDidAppearNotification";

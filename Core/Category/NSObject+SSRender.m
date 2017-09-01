@@ -1,10 +1,8 @@
 //
 //  NSObject+SSRender.m
-//  SSRenderKit
-//
-//  Created by 陈雄 on 2017/6/23.
-//  Copyright © 2017年 com.feelings. All rights reserved.
-//
+//  JSONRenderKit
+//  Created by 陈雄 on 16/4/4.
+//  Copyright © 2016年 com.feelings. All rights reserved.
 
 #import "NSObject+SSRender.h"
 #import "SSJSContext.h"

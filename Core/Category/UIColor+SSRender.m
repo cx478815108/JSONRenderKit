@@ -1,10 +1,8 @@
 //
 //  UIColor+FSAdd.m
-//  MyWHUT
-//
-//  Created by 陈雄 on 16/7/1.
+//  JSONRenderKit
+//  Created by 陈雄 on 16/4/4.
 //  Copyright © 2016年 com.feelings. All rights reserved.
-//
 
 #import "UIColor+SSRender.h"
 #import "CXMacros.h"
