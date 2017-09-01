@@ -45,7 +45,7 @@ class NSObject{
     }
 
     //调用OC
-    //invoke a method of Objective-C object with given parameters
+    //invoke a method of Objective-C object with given parameters 
     invokeNative(method,...args){
         return oc_invokeWithArgs(this.ocPointer,method,args);
     }

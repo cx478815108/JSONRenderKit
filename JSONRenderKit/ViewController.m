@@ -6,6 +6,7 @@
 //  Copyright © 2017年 com.feelings. All rights reserved.
 //
 
+
 #import "ViewController.h"
 #import "SSBaseRenderController.h"
 #import "CXMacros.h"
@@ -26,6 +27,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.tableView.tableFooterView=[UIView new];
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

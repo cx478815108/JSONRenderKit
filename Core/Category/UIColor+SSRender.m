@@ -98,3 +98,4 @@ static BOOL ss_hexStrToRGBA(NSString *str,CGFloat *r, CGFloat *g, CGFloat *b, CG
 }
 
 @end
+

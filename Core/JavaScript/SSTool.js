@@ -203,7 +203,7 @@ class State{
  * 用于更新视图数据
  * dispatch a given action to the specific view whose is is the viewId with Style to update athe view
  * @param  type  json里面定义好的action
- * @param  type  the action defined in the given json
+ * @param  type  the action defined in the given json 
  */
 let $dispatch = (type)=>{
     //取action

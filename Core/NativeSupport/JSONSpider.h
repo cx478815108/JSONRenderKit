@@ -35,3 +35,4 @@ typedef void(^SpiderNetFailureBlock)(NSError *netError);
                 failure:(SpiderNetFailureBlock)failure;
 
 @end
+

@@ -3,6 +3,13 @@
 ![](http://ou3yprhbt.bkt.clouddn.com/JSONRenderKitBanner.png)
 
 ------------------------
+## Fuck Xcode 9 ,Fuck Xcode9 Simulator,Fuck CocoaPod ,Fuck all of it !!!
+**This library will not support for CocoaPod!
+CocoaPod just waste our life!
+Fuckkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk**
+
+**Why jiust see the fuck.png in the screenshot!!!
+Wht the fuck of Spider.h???**
 
 ## 更简单，更方便地生成iOS 新界面 🚗 🚗 🚗 
 

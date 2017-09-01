@@ -341,4 +341,5 @@ static NSString *SSEndEditingNotification = @"SSEndEditingNotification";
         if ([aligns.allKeys containsObject:align]) { self.textAlignment = [aligns[align] integerValue];}
     }
 }
+
 @end

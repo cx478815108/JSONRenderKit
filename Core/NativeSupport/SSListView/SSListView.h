@@ -59,4 +59,5 @@
  @param item style
  */
 -(void)addItemToTrail:(NSDictionary *)item;
+
 @end
