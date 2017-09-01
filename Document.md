@@ -3,6 +3,7 @@
 
 文档可能有遗漏的地方，请看Demo里面 Service.py里面JSON的编写！
 
+
 ## JSON中可以调用的全局对象,函数,属性
 
 1.可调用的对象只有`UI`,`$props`,`$actions`
