@@ -5,10 +5,10 @@
 ------------------------
 ## 😡😡😡 Fuck Xcode9 ,Fuck Xcode9-Simulator,Fuck CocoaPod ,😡😡😡!!!
 **This library will not support for CocoaPod!
-CocoaPod just waste our life!
+CocoaPod just destroy the beauty of life!
 Fuckkkkkkkkkkkkkkkkkkkk**
 
-**Why jiust see the fuck.png in the screenshot!!!
+**Why just see the fuck.png in the screenshot!!!
 Wht the fuck of Spider.h???**
 
 ## 更简单，更方便地生成iOS 新界面 🚗 🚗 🚗 
