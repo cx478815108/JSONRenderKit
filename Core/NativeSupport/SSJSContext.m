@@ -10,7 +10,7 @@
 #import "UI.h"
 #import "CXMacros.h"
 #import "NSObject+SSRender.h"
-#import "Spider.h"
+#import "JSONSpider.h"
 
 SSJSContext *_currentContext=nil;
 
@@ -107,14 +107,14 @@ SSJSContext *_currentContext=nil;
     self[@"oc_urlRequest"] = ^void(NSString *url,NSString *type,JSValue *parameters,JSValue *success,JSValue *failure){
         NSDictionary *ocParameters = [parameters isUndefined]?nil:[parameters toDictionary];
         if ([type isEqualToString:@"GET"]) {
-            [Spider getWithURLString:url parameters:ocParameters success:^(id responseObject) {
+            [JSONSpider getWithURLString:url parameters:ocParameters success:^(id responseObject) {
                 [success callWithArguments:@[responseObject]];
             } failure:^(NSError *netError) {
                 [failure callWithArguments:@[netError.localizedDescription]];
             }];
         }
         else {
-            [Spider postWithURLString:url parameters:ocParameters success:^(id responseObject) {
+            [JSONSpider postWithURLString:url parameters:ocParameters success:^(id responseObject) {
                 [success callWithArguments:@[responseObject]];
             } failure:^(NSError *netError) {
                 [failure callWithArguments:@[netError.localizedDescription]];
@@ -122,7 +122,7 @@ SSJSContext *_currentContext=nil;
         }
     };
     
-    [self addInternalPlugs];
+    [self addInternalPlugins];
     @weakify(self);
     self[@"oc_renderFinish"] = ^(){
         @strongify(self);
@@ -135,18 +135,17 @@ SSJSContext *_currentContext=nil;
     NSString *sstool   = [NSString stringWithContentsOfFile:toolPath encoding:NSUTF8StringEncoding error:nil];
     //增加sourceURL 你可以在Safari中 给脚本打断点调试
     NSURL *toolURL = [NSURL URLWithString:toolPath];
-    [self evaluateScript:sstool withSourceURL:toolURL];
+    [self addSricpt:sstool sourceURL:toolURL];
     
     //执行相应脚本
     //run the prepared script SSUIKit.js
     NSString *kitPath = [[NSBundle mainBundle] pathForResource:@"SSUIKit" ofType:@"js"];
     NSString *sskit   = [NSString stringWithContentsOfFile:kitPath encoding:NSUTF8StringEncoding error:nil];
-    //增加sourceURL 你可以在Safari中 给脚本打断点调试
     NSURL *kitURL = [NSURL URLWithString:toolPath];
-    [self evaluateScript:sskit withSourceURL:kitURL];
+    [self addSricpt:sskit sourceURL:kitURL];
 }
 
--(void)addInternalPlugs{
+-(void)addInternalPlugins{
     //给JS注入UI这个对象，把UI类定义通过JSExport 输出给JS作为一个对象
     //inject the UI objetc to JS used the JSExport
     UI *uiPlugin = [[UI alloc] init];
@@ -158,6 +157,10 @@ SSJSContext *_currentContext=nil;
         [self.plugins setObject:plugin forKey:name];
         self[name] = plugin;
     }
+}
+
+-(void)addSricpt:(NSString *)sricpt sourceURL:(NSURL *)sourceURL{
+    [self evaluateScript:sricpt withSourceURL:sourceURL];
 }
 
 -(UIView *)renderWithJSON:(NSDictionary *)json

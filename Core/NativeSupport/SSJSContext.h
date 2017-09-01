@@ -43,7 +43,6 @@
  */
 -(UIView *)renderWithJSON:(NSDictionary *)json;
 
-
 /**
  you can add a NSObject that conform the JSExport
  example : [context addJSPlugin:[[UI alloc] init] name:@"UI"];
@@ -51,4 +50,12 @@
  @param plugin custom object
  */
 -(void)addJSPlugin:(NSObject *)plugin name:(NSString *)name;
+
+/**
+ you can add custom sricpt that define the new UI tools or kits
+ 
+ @param sricpt JS sricpt
+ @param sourceURL sourceURL of the JS sricpt that can help for the debuging in Safari
+ */
+-(void)addSricpt:(NSString *)sricpt sourceURL:(NSURL *)sourceURL;
 @end
