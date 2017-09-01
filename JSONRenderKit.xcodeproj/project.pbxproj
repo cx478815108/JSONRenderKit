@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5AA46323991637BF4F95B26C /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */; };
-		9B6C2B111F590CC2006F2215 /* js.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B6C2B101F590CC2006F2215 /* js.bundle */; };
+		9B6C2B151F590DA2006F2215 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9B6C2B131F590DA2006F2215 /* SSTool.js */; };
+		9B6C2B161F590DA2006F2215 /* SSUIKit.js in Resources */ = {isa = PBXBuildFile; fileRef = 9B6C2B141F590DA2006F2215 /* SSUIKit.js */; };
 		9B9565561F584A0E00C0BE90 /* JSONSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9565541F584A0200C0BE90 /* JSONSpider.m */; };
 		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
 		9BF92A751F09CCCA00E838CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A741F09CCCA00E838CD /* main.m */; };
@@ -30,7 +31,8 @@
 /* Begin PBXFileReference section */
 		3BF6C0FD178E435B59C5F64B /* Pods-JSONRenderKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONRenderKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONRenderKit/Pods-JSONRenderKit.release.xcconfig"; sourceTree = "<group>"; };
 		60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B6C2B101F590CC2006F2215 /* js.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = js.bundle; sourceTree = "<group>"; };
+		9B6C2B131F590DA2006F2215 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
+		9B6C2B141F590DA2006F2215 /* SSUIKit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSUIKit.js; sourceTree = "<group>"; };
 		9B9565541F584A0200C0BE90 /* JSONSpider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONSpider.m; sourceTree = "<group>"; };
 		9B9565551F584A0200C0BE90 /* JSONSpider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSpider.h; sourceTree = "<group>"; };
 		9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSeparator.h"; sourceTree = "<group>"; };
@@ -86,6 +88,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9B6C2B121F590DA2006F2215 /* JavaScript */ = {
+			isa = PBXGroup;
+			children = (
+				9B6C2B131F590DA2006F2215 /* SSTool.js */,
+				9B6C2B141F590DA2006F2215 /* SSUIKit.js */,
+			);
+			path = JavaScript;
+			sourceTree = "<group>";
+		};
 		9BF92A671F09CCCA00E838CD = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +143,7 @@
 		9BF92A8A1F09CD4000E838CD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				9B6C2B101F590CC2006F2215 /* js.bundle */,
+				9B6C2B121F590DA2006F2215 /* JavaScript */,
 				9BF92AA41F09D16500E838CD /* Category */,
 				9BF92AAF1F09D16500E838CD /* NativeSupport */,
 			);
@@ -252,9 +263,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6C2B151F590DA2006F2215 /* SSTool.js in Resources */,
 				9BF92A831F09CCCA00E838CD /* LaunchScreen.storyboard in Resources */,
 				9BF92A801F09CCCA00E838CD /* Assets.xcassets in Resources */,
-				9B6C2B111F590CC2006F2215 /* js.bundle in Resources */,
+				9B6C2B161F590DA2006F2215 /* SSUIKit.js in Resources */,
 				9BF92A7E1F09CCCA00E838CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
