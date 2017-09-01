@@ -8,7 +8,7 @@
 
 #import "SSBaseRenderController.h"
 #import "SSJSContext.h"
-#import "Spider.h"
+#import "JSONSpider.h"
 #import "UIColor+SSRender.h"
 #import "CXMacros.h"
 
@@ -16,6 +16,9 @@ NSString *const SSViewDidAppearNotification     = @"ViewDidAppearNotification";
 NSString *const SSViewDidDisappearNotification  = @"ViewDidDisappearNotification";
 
 SSBaseRenderController *_currentRenderController = nil;
+
+@implementation SSJSONRequest
+@end
 
 @interface SSBaseRenderController ()
 @property(nonatomic ,strong) NSDictionary *config;
@@ -75,20 +78,38 @@ SSBaseRenderController *_currentRenderController = nil;
     [self.jsContext evaluateScript:@"controller.viewDidMount()"];
 }
 
+-(void)startRenderWithJSON:(NSDictionary *)json{
+    NSAssert([json isKindOfClass:[NSDictionary class]], @"the json is not a dictionary,please check it!");
+    [self didReceiveRenderJSON:json];
+}
+
 #pragma mark - main actions
 -(void)startRender
 {
-    if (!(self.url && [self.url hasPrefix:@"http"])) return;
+    if (self.jsonRequest == nil) return;
+    if (!(self.jsonRequest.url && [self.jsonRequest.url hasPrefix:@"http"])) return;
     [self showIndicator];
     [SSJSContext setCurrentContext:self.jsContext];
-    [Spider getWithURLString:self.url parameters:nil success:^(id responseObject) {
-        [self hideIndicator];
-        NSDictionary *json  = responseObject;
-        [self didReceiveRenderJSON:json];
-    } failure:^(NSError *netError) {
-        [self.indicatorView stopAnimating];
-        CXDebugLog(@"%@",netError);
-    }];
+    if (self.jsonRequest.type == SSJSONRequestGET) {
+        [JSONSpider getWithURLString:self.jsonRequest.url parameters:self.jsonRequest.parameters success:^(id responseObject) {
+            [self hideIndicator];
+            NSDictionary *json  = responseObject;
+            [self didReceiveRenderJSON:json];
+        } failure:^(NSError *netError) {
+            [self.indicatorView stopAnimating];
+            CXDebugLog(@"%@",netError);
+        }];
+    }
+    else {
+        [JSONSpider postWithURLString:self.jsonRequest.url parameters:self.jsonRequest.parameters success:^(id responseObject) {
+            [self hideIndicator];
+            NSDictionary *json  = responseObject;
+            [self didReceiveRenderJSON:json];
+        } failure:^(NSError *netError) {
+            [self.indicatorView stopAnimating];
+            CXDebugLog(@"%@",netError);
+        }];
+    }
 }
 
 -(void)showIndicator
