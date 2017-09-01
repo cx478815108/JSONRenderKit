@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5AA46323991637BF4F95B26C /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */; };
-		9B3D83601F2DAE8100EE5020 /* Service.py in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D835F1F2DAE8100EE5020 /* Service.py */; };
 		9B9565561F584A0E00C0BE90 /* JSONSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9565541F584A0200C0BE90 /* JSONSpider.m */; };
 		9BB2A7491F20E639007A9432 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2A7481F20E639007A9432 /* SSTool.js */; };
 		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		3BF6C0FD178E435B59C5F64B /* Pods-JSONRenderKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONRenderKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONRenderKit/Pods-JSONRenderKit.release.xcconfig"; sourceTree = "<group>"; };
 		60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B3D835F1F2DAE8100EE5020 /* Service.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Service.py; sourceTree = "<group>"; };
 		9B9565541F584A0200C0BE90 /* JSONSpider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONSpider.m; sourceTree = "<group>"; };
 		9B9565551F584A0200C0BE90 /* JSONSpider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSpider.h; sourceTree = "<group>"; };
 		9BB2A7481F20E639007A9432 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		9BF92AAD1F09D16500E838CD /* JavaScript */ = {
 			isa = PBXGroup;
 			children = (
-				9B3D835F1F2DAE8100EE5020 /* Service.py */,
 				9BB2A7481F20E639007A9432 /* SSTool.js */,
 				9BF92AAE1F09D16500E838CD /* SSUIKit.js */,
 			);
@@ -268,7 +265,6 @@
 			files = (
 				9BF92A831F09CCCA00E838CD /* LaunchScreen.storyboard in Resources */,
 				9BF92AB61F09D16500E838CD /* SSUIKit.js in Resources */,
-				9B3D83601F2DAE8100EE5020 /* Service.py in Resources */,
 				9BF92A801F09CCCA00E838CD /* Assets.xcassets in Resources */,
 				9BB2A7491F20E639007A9432 /* SSTool.js in Resources */,
 				9BF92A7E1F09CCCA00E838CD /* Main.storyboard in Resources */,
