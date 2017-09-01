@@ -1,6 +1,6 @@
 //
 //  UIView+Separator.h
-//  MyWHUT
+//  JSONRenderKit
 //
 //  Created by 陈雄 on 16/6/9.
 //  Copyright © 2016年 com.feelings. All rights reserved.

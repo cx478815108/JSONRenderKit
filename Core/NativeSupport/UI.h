@@ -1,6 +1,6 @@
 //
 //  UI.h
-//  SSRenderKit
+//  JSONRenderKit
 //
 //  Created by 陈雄 on 2017/6/19.
 //  Copyright © 2017年 com.feelings. All rights reserved.
