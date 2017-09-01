@@ -4,6 +4,7 @@ import time
 from flask import Flask,jsonify
 app = Flask(__name__)
 
+
 appJSON={
     "controller":{
         "title":"Speed Dial Squared Up",
