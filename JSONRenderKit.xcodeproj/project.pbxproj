@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5AA46323991637BF4F95B26C /* libPods-JSONRenderKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */; };
+		9B6C2B111F590CC2006F2215 /* js.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B6C2B101F590CC2006F2215 /* js.bundle */; };
 		9B9565561F584A0E00C0BE90 /* JSONSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9565541F584A0200C0BE90 /* JSONSpider.m */; };
-		9BB2A7491F20E639007A9432 /* SSTool.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2A7481F20E639007A9432 /* SSTool.js */; };
 		9BEE41C11F30CAFF00721C1B /* UIView+SSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */; };
 		9BF92A751F09CCCA00E838CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A741F09CCCA00E838CD /* main.m */; };
 		9BF92A781F09CCCA00E838CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92A771F09CCCA00E838CD /* AppDelegate.m */; };
@@ -19,7 +19,6 @@
 		9BF92A831F09CCCA00E838CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF92A811F09CCCA00E838CD /* LaunchScreen.storyboard */; };
 		9BF92AB21F09D16500E838CD /* NSObject+SSRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AA61F09D16500E838CD /* NSObject+SSRender.m */; };
 		9BF92AB41F09D16500E838CD /* UIColor+SSRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AAA1F09D16500E838CD /* UIColor+SSRender.m */; };
-		9BF92AB61F09D16500E838CD /* SSUIKit.js in Resources */ = {isa = PBXBuildFile; fileRef = 9BF92AAE1F09D16500E838CD /* SSUIKit.js */; };
 		9BF92AB71F09D16500E838CD /* SSJSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AB11F09D16500E838CD /* SSJSContext.m */; };
 		9BF92AC11F09D4D600E838CD /* UIView+SSRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AC01F09D4D600E838CD /* UIView+SSRender.m */; };
 		9BF92AC41F09D89300E838CD /* SSBaseRenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF92AC31F09D89300E838CD /* SSBaseRenderController.m */; };
@@ -31,9 +30,9 @@
 /* Begin PBXFileReference section */
 		3BF6C0FD178E435B59C5F64B /* Pods-JSONRenderKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONRenderKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSONRenderKit/Pods-JSONRenderKit.release.xcconfig"; sourceTree = "<group>"; };
 		60A18A53A9D1FE759A0B3272 /* libPods-JSONRenderKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSONRenderKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B6C2B101F590CC2006F2215 /* js.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = js.bundle; sourceTree = "<group>"; };
 		9B9565541F584A0200C0BE90 /* JSONSpider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONSpider.m; sourceTree = "<group>"; };
 		9B9565551F584A0200C0BE90 /* JSONSpider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSpider.h; sourceTree = "<group>"; };
-		9BB2A7481F20E639007A9432 /* SSTool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSTool.js; sourceTree = "<group>"; };
 		9BEE41BF1F30CAFF00721C1B /* UIView+SSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSeparator.h"; sourceTree = "<group>"; };
 		9BEE41C01F30CAFF00721C1B /* UIView+SSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSeparator.m"; sourceTree = "<group>"; };
 		9BEE41C51F316EC200721C1B /* CXMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXMacros.h; sourceTree = "<group>"; };
@@ -51,7 +50,6 @@
 		9BF92AA61F09D16500E838CD /* NSObject+SSRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSRender.m"; sourceTree = "<group>"; };
 		9BF92AA91F09D16500E838CD /* UIColor+SSRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SSRender.h"; sourceTree = "<group>"; };
 		9BF92AAA1F09D16500E838CD /* UIColor+SSRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SSRender.m"; sourceTree = "<group>"; };
-		9BF92AAE1F09D16500E838CD /* SSUIKit.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SSUIKit.js; sourceTree = "<group>"; };
 		9BF92AB01F09D16500E838CD /* SSJSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSJSContext.h; sourceTree = "<group>"; };
 		9BF92AB11F09D16500E838CD /* SSJSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSJSContext.m; sourceTree = "<group>"; };
 		9BF92ABF1F09D4D600E838CD /* UIView+SSRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSRender.h"; sourceTree = "<group>"; };
@@ -134,8 +132,8 @@
 		9BF92A8A1F09CD4000E838CD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9B6C2B101F590CC2006F2215 /* js.bundle */,
 				9BF92AA41F09D16500E838CD /* Category */,
-				9BF92AAD1F09D16500E838CD /* JavaScript */,
 				9BF92AAF1F09D16500E838CD /* NativeSupport */,
 			);
 			path = Core;
@@ -154,15 +152,6 @@
 				9BF92AAA1F09D16500E838CD /* UIColor+SSRender.m */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		9BF92AAD1F09D16500E838CD /* JavaScript */ = {
-			isa = PBXGroup;
-			children = (
-				9BB2A7481F20E639007A9432 /* SSTool.js */,
-				9BF92AAE1F09D16500E838CD /* SSUIKit.js */,
-			);
-			path = JavaScript;
 			sourceTree = "<group>";
 		};
 		9BF92AAF1F09D16500E838CD /* NativeSupport */ = {
@@ -264,9 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF92A831F09CCCA00E838CD /* LaunchScreen.storyboard in Resources */,
-				9BF92AB61F09D16500E838CD /* SSUIKit.js in Resources */,
 				9BF92A801F09CCCA00E838CD /* Assets.xcassets in Resources */,
-				9BB2A7491F20E639007A9432 /* SSTool.js in Resources */,
+				9B6C2B111F590CC2006F2215 /* js.bundle in Resources */,
 				9BF92A7E1F09CCCA00E838CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
